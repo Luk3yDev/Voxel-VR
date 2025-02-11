@@ -19,6 +19,8 @@ public class ManipulateTerrain : MonoBehaviour
     [Header("Visuals")]
     [SerializeField] GameObject indicator;
 
+    float cooldown = 0.1f;
+
     void Update()
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, range, terrainLayer))
@@ -32,9 +34,15 @@ public class ManipulateTerrain : MonoBehaviour
             indicator.SetActive(false);
 
         float triggerValue = pinchAction.action.ReadValue<float>();
-        if (triggerValue > 0.5f)
+        if (triggerValue > 0.5f && cooldown <= 0)
         {
             DestroyVoxel();
+            cooldown = 0.1f;
+        }
+
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
         }
     }
 

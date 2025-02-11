@@ -611,9 +611,6 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 256
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
   range: 5
   air: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
   indicator: {fileID: 1910625528}
@@ -1060,9 +1057,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
-  m_Height: 1.1757088
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5878544, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!143 &928257208
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1082,13 +1079,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.175709
+  m_Height: 1
   m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.5878544, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &928257209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2176,9 +2173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d92c6e96b12d2147a0ee939dab5f7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
   grassVoxel: {fileID: 11400000, guid: 0f99a178128915547b562f8001bedbda, type: 2}
   dirtVoxel: {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
-  airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
+  stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   horizontalScale: 20
   verticalScale: 10
 --- !u!4 &1907156670

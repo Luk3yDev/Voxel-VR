@@ -5,9 +5,13 @@ using Unity.Mathematics;
 
 public class NoiseGenerator : MonoBehaviour
 {
+    [Header("Voxels")]
+    [SerializeField] Voxel airVoxel;
     [SerializeField] Voxel grassVoxel;
     [SerializeField] Voxel dirtVoxel;
-    [SerializeField] Voxel airVoxel;
+    [SerializeField] Voxel stoneVoxel;
+
+    [Header("Noise Params")]
     [SerializeField] float horizontalScale;
     [SerializeField] float verticalScale;
     int seed;
@@ -23,9 +27,13 @@ public class NoiseGenerator : MonoBehaviour
         float noiseVal = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / horizontalScale);
         if (((noiseVal + 1) * verticalScale) > pos.y)
         {
-            return dirtVoxel;
+            return stoneVoxel;
         }
         if (((noiseVal + 1) * verticalScale) > pos.y-1)
+        {
+            return dirtVoxel;
+        }
+        if (((noiseVal + 1) * verticalScale) > pos.y-2)
         {
             return grassVoxel;
         }
