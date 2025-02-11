@@ -5,18 +5,29 @@ using Unity.Mathematics;
 
 public class NoiseGenerator : MonoBehaviour
 {
-    [SerializeField] Voxel fullVoxel;
-    [SerializeField] Voxel otherFullVoxel;
+    [SerializeField] Voxel grassVoxel;
+    [SerializeField] Voxel dirtVoxel;
     [SerializeField] Voxel airVoxel;
-    [SerializeField] float noiseScale;
-    [SerializeField] float threashold;
+    [SerializeField] float horizontalScale;
+    [SerializeField] float verticalScale;
+    int seed;
+
+    private void Awake()
+    {
+        UnityEngine.Random.InitState(System.DateTime.Now.Second);
+        seed = UnityEngine.Random.Range(-1000, 1000);
+    }
+
     public Voxel GetVoxelAtPos(Vector3Int pos)
     {
-        float noiseVal = noise.snoise(new float3((float)pos.x, 0, (float)pos.z) / noiseScale);
-        if (((noiseVal + 1) * 10) > pos.y)
+        float noiseVal = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / horizontalScale);
+        if (((noiseVal + 1) * verticalScale) > pos.y)
         {
-            if (UnityEngine.Random.Range(1, 3) == 1) return fullVoxel;
-            else return otherFullVoxel;
+            return dirtVoxel;
+        }
+        if (((noiseVal + 1) * verticalScale) > pos.y-1)
+        {
+            return grassVoxel;
         }
         return airVoxel;
     }
