@@ -13,7 +13,7 @@ public class NoiseGenerator : MonoBehaviour
     public Voxel GetVoxelAtPos(Vector3Int pos)
     {
         float noiseVal = noise.snoise(new float3((float)pos.x, 0, (float)pos.z) / noiseScale);
-        if (((noiseVal + 1) * 20) > pos.y)
+        if (((noiseVal + 1) * 10) > pos.y)
         {
             if (UnityEngine.Random.Range(1, 3) == 1) return fullVoxel;
             else return otherFullVoxel;
