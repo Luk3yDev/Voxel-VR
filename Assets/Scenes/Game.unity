@@ -2197,7 +2197,7 @@ MonoBehaviour:
   horizontalScale: 30
   verticalScale: 15
   oddityScale: 15
-  oddity: 1
+  oddity: 0.8
   oddityOffset: 0.5
 --- !u!4 &1907156670
 Transform:
