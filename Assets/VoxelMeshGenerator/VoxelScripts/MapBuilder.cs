@@ -125,6 +125,7 @@ public class MapBuilder : MonoBehaviour
         Vector3Int chunkPos = new Vector3Int(chunkX * realChunkSize, chunkY * realChunkSize, chunkZ * realChunkSize);
         Voxel[,,] chunkData = getChunkDataFromChunkPos(chunkPos);
         VoxelMeshBuilder chunkI = Instantiate(chunkPrefab);
+        chunkI.transform.parent = transform;
         chunkI.transform.position = chunkPos;
         chunkI.BuildChunk(chunkData);
         builtChunks.Add(chunkPos, chunkI);
