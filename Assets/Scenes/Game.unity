@@ -2181,11 +2181,10 @@ MonoBehaviour:
   stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   horizontalScale: 30
-  verticalScale: 10
+  verticalScale: 15
   oddityScale: 15
   oddity: 1
   oddityOffset: 0.5
-  falloffPower: 2
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0
