@@ -1535,7 +1535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1611188464
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1617,7 +1617,7 @@ Transform:
   m_GameObject: {fileID: 1611188463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.45, z: 0}
+  m_LocalPosition: {x: 0, y: 1.45, z: 0}
   m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2177,11 +2177,11 @@ MonoBehaviour:
   grassVoxel: {fileID: 11400000, guid: 0f99a178128915547b562f8001bedbda, type: 2}
   dirtVoxel: {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
   stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
-  horizontalScale: 20
+  horizontalScale: 30
   verticalScale: 10
-  oddityScale: 20
-  oddity: 1.2
-  oddityOffset: 0.4
+  oddityScale: 15
+  oddity: 1
+  oddityOffset: 0.5
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0
