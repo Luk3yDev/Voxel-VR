@@ -22,6 +22,7 @@ public class NoiseGenerator : MonoBehaviour
     int seed;
     int odditySeed;
     MapBuilder mb;
+    Dictionary<Vector2Int, float> previouslySampledNoise = new Dictionary<Vector2Int, float>();
 
     private void Awake()
     {
@@ -39,7 +40,13 @@ public class NoiseGenerator : MonoBehaviour
         float distanceFromCenter = Mathf.Sqrt((pos.x - centerX) * (pos.x - centerX) + (pos.z - centerZ) * (pos.z - centerZ));
         float falloff = Mathf.Clamp01(Mathf.Pow(distanceFromCenter / centerX, 2));
 
-        float noiseVal = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / horizontalScale);
+        float noiseVal = 0;
+        if (!previouslySampledNoise.TryGetValue(new Vector2Int(pos.x, pos.z), out noiseVal))
+        {
+            noiseVal = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / horizontalScale);
+            previouslySampledNoise.Add(new Vector2Int(pos.x, pos.z), noiseVal);
+        }       
+        
         float noiseValT = noise.snoise(new float3((float)pos.x + odditySeed, (float)pos.y + odditySeed, (float)pos.z + odditySeed) / oddityScale);
         noiseVal += (noiseValT + (oddityOffset - 0.5f)) * oddity;
 
