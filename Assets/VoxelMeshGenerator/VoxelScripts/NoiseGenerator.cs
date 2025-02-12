@@ -10,6 +10,7 @@ public class NoiseGenerator : MonoBehaviour
     [SerializeField] Voxel grassVoxel;
     [SerializeField] Voxel dirtVoxel;
     [SerializeField] Voxel stoneVoxel;
+    [SerializeField] Voxel rootVoxel;
 
     [Header("Noise Params")]
     [SerializeField] float horizontalScale;
@@ -41,8 +42,13 @@ public class NoiseGenerator : MonoBehaviour
         {
             return dirtVoxel;
         }
-        if (((noiseVal + 1) * verticalScale) > pos.y-3)
-        {
+        if (((noiseVal + 1) * verticalScale) > pos.y - 3)
+        {           
+            if (UnityEngine.Random.Range(0, 100) == 0)
+            {
+                return rootVoxel;
+            }
+
             return grassVoxel;
         }
         return airVoxel;

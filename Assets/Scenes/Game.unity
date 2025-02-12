@@ -650,7 +650,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2137,6 +2137,7 @@ GameObject:
   - component: {fileID: 1907156670}
   - component: {fileID: 1907156669}
   - component: {fileID: 1907156668}
+  - component: {fileID: 1907156671}
   m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
@@ -2161,6 +2162,7 @@ MonoBehaviour:
   chunkPrefab: {fileID: 9151628178358892403, guid: b4a598f64d967ef44bf8916d8166eac1,
     type: 3}
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
+  realChunkSize: 0
 --- !u!114 &1907156669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,6 +2179,7 @@ MonoBehaviour:
   grassVoxel: {fileID: 11400000, guid: 0f99a178128915547b562f8001bedbda, type: 2}
   dirtVoxel: {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
   stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
+  rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   horizontalScale: 30
   verticalScale: 10
   oddityScale: 15
@@ -2197,6 +2200,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907156671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907156667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3a404ab57923c41aab787919a11f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
+  woodVoxel: {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
+  leavesVoxel: {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
 --- !u!1 &1910625528
 GameObject:
   m_ObjectHideFlags: 0

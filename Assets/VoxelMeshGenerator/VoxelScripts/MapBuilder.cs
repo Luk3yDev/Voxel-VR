@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class MapBuilder : MonoBehaviour
 {
     [SerializeField] int chunkSize;
-    [SerializeField] Vector3Int mapSize;
+    public Vector3Int mapSize;
     [SerializeField] VoxelMeshBuilder chunkPrefab;
     [SerializeField] Voxel airVoxel;
 
     NoiseGenerator noiseGenerator;
-    Voxel[,,] voxelData;
+    public Voxel[,,] voxelData;
     Dictionary<Vector3Int, VoxelMeshBuilder> builtChunks;
-    int realChunkSize;
+    [HideInInspector] public int realChunkSize;
+    TerrainFeatureGen featureGen;
+
     private void Awake()
     {
         noiseGenerator = GetComponent<NoiseGenerator>();
+        featureGen = GetComponent<TerrainFeatureGen>();
     }
 
     private void Start()
@@ -81,6 +85,7 @@ public class MapBuilder : MonoBehaviour
             }
         }
 
+        featureGen.GenerateFeatures();
     }
 
     void BuildMap()
@@ -132,4 +137,6 @@ public class MapBuilder : MonoBehaviour
         int z = Mathf.FloorToInt((float)(voxelPos.z - 1) / realChunkSize);
         return new Vector3Int(x, y, z);
     }
+
+    
 }
