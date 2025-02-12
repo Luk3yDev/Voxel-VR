@@ -2253,7 +2253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   woodVoxel: {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
+  woodVoxel2: {fileID: 11400000, guid: 2fd22eedd7cd7594386c8a6173046ed8, type: 2}
   leavesVoxel: {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
+  leavesVoxel2: {fileID: 11400000, guid: c873a57115f45a642a20d7fb16a6ca0d, type: 2}
 --- !u!1 &1910625528
 GameObject:
   m_ObjectHideFlags: 0

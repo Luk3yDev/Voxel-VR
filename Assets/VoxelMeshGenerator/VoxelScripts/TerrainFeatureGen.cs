@@ -6,7 +6,9 @@ public class TerrainFeatureGen : MonoBehaviour
 {
     [SerializeField] Voxel rootVoxel;
     [SerializeField] Voxel woodVoxel;
+    [SerializeField] Voxel woodVoxel2;
     [SerializeField] Voxel leavesVoxel;
+    [SerializeField] Voxel leavesVoxel2;
     MapBuilder mb;
 
     private void Awake()
@@ -24,7 +26,8 @@ public class TerrainFeatureGen : MonoBehaviour
                 {
                     if (mb.voxelData[x, y, z] == rootVoxel)
                     {
-                        FeatureTree(new Vector3Int(x, y, z));
+                        if (Random.Range(0, 5) == 0) FeatureTree2(new Vector3Int(x, y, z)); // Chance of mushroom
+                        else FeatureTree(new Vector3Int(x, y, z));
                     }
                 }
             }
@@ -59,5 +62,29 @@ public class TerrainFeatureGen : MonoBehaviour
                 }
             }
         }
-    } 
+    }
+
+    void FeatureTree2(Vector3Int pos)
+    {
+        if (pos.y < (mb.realChunkSize * mb.mapSize.y) - 16)
+        {
+            for (int i = 1; i < 5; i++)
+            {
+                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel2;
+            }
+            for (int x = -2; x < 3; x++)
+            {
+                for (int z = -2; z < 3; z++)
+                {
+                    if (pos.x + x >= 1 && pos.x + x < mb.voxelData.GetLength(0) - 1)
+                    {                        
+                        if (pos.z + z >= 1 && pos.z + z < mb.voxelData.GetLength(2) - 1)
+                        {
+                            mb.voxelData[pos.x + x, pos.y + 5, pos.z + z] = leavesVoxel2;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

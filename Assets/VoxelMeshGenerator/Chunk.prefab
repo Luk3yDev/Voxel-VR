@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bec346dbe7769459a5b7280f5f538d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atlasSize: 3
+  atlasSize: 4
 --- !u!33 &7119105300640238961
 MeshFilter:
   m_ObjectHideFlags: 0
