@@ -52,7 +52,7 @@ public class NoiseGenerator : MonoBehaviour
 
         float height = ((noiseVal + 1) * verticalScale * (1f - falloff));
         
-        if (height > pos.y + 3)
+        if (height > pos.y + 4)
         {
             return stoneVoxel;
         }
@@ -60,7 +60,7 @@ public class NoiseGenerator : MonoBehaviour
         {
             return sandVoxel;
         }
-        if (height > pos.y + 1)
+        if (height > pos.y + 2)
         {
             return dirtVoxel;
         }
