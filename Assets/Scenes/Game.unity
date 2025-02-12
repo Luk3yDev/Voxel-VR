@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 66203134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -607,13 +607,59 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  gripAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: f00de617-aa74-4db4-b801-caddefa5a5d4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  buttonAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3f174a9b-e3fc-4143-9d2b-048b7905aa00
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6593132292211455399, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
   map: {fileID: 1907156668}
   terrainLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   range: 5
-  air: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
+  voxels:
+  - {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
+  - {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
+  - {fileID: 11400000, guid: 0f99a178128915547b562f8001bedbda, type: 2}
+  - {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
+  - {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
+  - {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
+  - {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
+  voxelHandMats:
+  - {fileID: 2100000, guid: 56a0d774199b3464c835a104168f8d91, type: 2}
+  - {fileID: 2100000, guid: 899ea002f7892ac40911e569fbf13fb0, type: 2}
+  - {fileID: 2100000, guid: 0d73e7b888aedbc489267fcf864df951, type: 2}
+  - {fileID: 2100000, guid: 28bc7e9af0478c544ba6572b541a2bc2, type: 2}
+  - {fileID: 2100000, guid: dba0c65e1136ee24d988cea4f943b855, type: 2}
+  - {fileID: 2100000, guid: 55ccc186ac34980478d0959b1f8c6bea, type: 2}
+  - {fileID: 2100000, guid: 85c0ae68577c3cb40bb80e22d50b9811, type: 2}
+  currentVoxel: 0
   indicator: {fileID: 1910625528}
+  currentVoxelIndicator: {fileID: 721492414}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +789,6 @@ GameObject:
   - component: {fileID: 721492415}
   - component: {fileID: 721492418}
   - component: {fileID: 721492417}
-  - component: {fileID: 721492416}
   - component: {fileID: 721492419}
   m_Layer: 0
   m_Name: CurrentBlock
@@ -751,7 +796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &721492415
 Transform:
   m_ObjectHideFlags: 0
@@ -767,27 +812,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 66203135}
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
---- !u!65 &721492416
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721492414}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &721492417
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -808,7 +832,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0d73e7b888aedbc489267fcf864df951, type: 2}
+  - {fileID: 2100000, guid: 56a0d774199b3464c835a104168f8d91, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
