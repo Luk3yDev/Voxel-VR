@@ -1535,7 +1535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1611188464
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2179,6 +2179,9 @@ MonoBehaviour:
   stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   horizontalScale: 20
   verticalScale: 10
+  oddityScale: 20
+  oddity: 1.2
+  oddityOffset: 0.4
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0
