@@ -11,6 +11,7 @@ public class NoiseGenerator : MonoBehaviour
     [SerializeField] Voxel dirtVoxel;
     [SerializeField] Voxel stoneVoxel;
     [SerializeField] Voxel rootVoxel;
+    [SerializeField] Voxel sandVoxel;
 
     [Header("Noise Params")]
     [SerializeField] float horizontalScale;
@@ -43,10 +44,14 @@ public class NoiseGenerator : MonoBehaviour
         noiseVal += (noiseValT + (oddityOffset - 0.5f)) * oddity;
 
         float height = ((noiseVal + 1) * verticalScale * (1f - falloff));
-
+        
         if (height > pos.y + 3)
         {
             return stoneVoxel;
+        }
+        if (height > pos.y && pos.y < 3)
+        {
+            return sandVoxel;
         }
         if (height > pos.y + 1)
         {

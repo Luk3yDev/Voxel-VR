@@ -2194,6 +2194,7 @@ MonoBehaviour:
   dirtVoxel: {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
   stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
+  sandVoxel: {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
   horizontalScale: 30
   verticalScale: 15
   oddityScale: 15
