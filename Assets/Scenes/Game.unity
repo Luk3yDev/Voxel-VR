@@ -2185,6 +2185,7 @@ MonoBehaviour:
   oddityScale: 15
   oddity: 1
   oddityOffset: 0.5
+  falloffPower: 2
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0
