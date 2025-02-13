@@ -7,19 +7,23 @@ public class NoiseGenerator : MonoBehaviour
 {
     [Header("Voxels")]
     [SerializeField] Voxel airVoxel;
-    [SerializeField] Voxel grassVoxel;
-    [SerializeField] Voxel dirtVoxel;
-    [SerializeField] Voxel stoneVoxel;
     [SerializeField] Voxel rootVoxel;
     [SerializeField] Voxel sandVoxel;
     [SerializeField] Voxel mushRootVoxel;
+    [SerializeField] Voxel sandstoneVoxel;
 
-    [Header("Noise Params")]
-    [SerializeField] float horizontalScale;
-    [SerializeField] float verticalScale;
-    [SerializeField] float oddityScale;
-    [SerializeField] float oddity;
-    [SerializeField] float oddityOffset;
+    [SerializeField] Biome biome;
+
+    float horizontalScale;
+    float verticalScale;
+    float oddityScale;
+    float oddity;
+    float oddityOffset;
+
+    Voxel surfaceVoxel;
+    Voxel dirtVoxel;
+    Voxel undergroundVoxel;
+
     int seed;
     int odditySeed;
     MapBuilder mb;
@@ -31,6 +35,15 @@ public class NoiseGenerator : MonoBehaviour
         seed = UnityEngine.Random.Range(-1000, 1000);
         odditySeed = UnityEngine.Random.Range(-1000, 1000);
         mb = GetComponent<MapBuilder>();
+
+        horizontalScale = biome.horizontalScale;
+        verticalScale = biome.verticalScale;
+        oddityScale = biome.oddityScale;
+        oddity = biome.oddity;
+        oddityOffset = biome.oddityOffset;
+        surfaceVoxel = biome.surfaceVoxel;
+        dirtVoxel = biome.dirtVoxel;
+        undergroundVoxel = biome.undergroundVoxel;
     }
 
     public Voxel GetVoxelAtPos(Vector3Int pos)
@@ -55,7 +68,7 @@ public class NoiseGenerator : MonoBehaviour
         
         if (height > pos.y + 4)
         {
-            return stoneVoxel;
+            return undergroundVoxel;
         }
         if (height > pos.y && pos.y < 3)
         {
@@ -66,18 +79,23 @@ public class NoiseGenerator : MonoBehaviour
             return dirtVoxel;
         }
         if (height > pos.y)
-        {
+        {           
             float treeRand = UnityEngine.Random.Range(0, 50 * falloff);
-            if (treeRand > 0.5f && UnityEngine.Random.Range(0, 200) == 0)
+
+            if (biome.generateTrees && treeRand > 0.5f && UnityEngine.Random.Range(0, 300) == 0)
             {
                 return rootVoxel;
             }
-            else if (treeRand < 0.5f && UnityEngine.Random.Range(0, 200) == 0)
+            if (biome.generateMushrooms && treeRand < 0.5f && UnityEngine.Random.Range(0, 300) == 0)
             {
                 return mushRootVoxel;
             }
+            if (biome.generateCacti && UnityEngine.Random.Range(0, 300) == 0)
+            {
+                return sandstoneVoxel;
+            }
 
-            return grassVoxel;
+            return surfaceVoxel;
         }
         return airVoxel;
     }

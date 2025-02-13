@@ -6,10 +6,12 @@ public class TerrainFeatureGen : MonoBehaviour
 {
     [SerializeField] Voxel rootVoxel;
     [SerializeField] Voxel mushRootVoxel;
+    [SerializeField] Voxel sandstoneVoxel;
     [SerializeField] Voxel woodVoxel;
     [SerializeField] Voxel woodVoxel2;
     [SerializeField] Voxel leavesVoxel;
     [SerializeField] Voxel leavesVoxel2;
+    [SerializeField] Voxel cactiVoxel;
     MapBuilder mb;
 
     private void Awake()
@@ -32,6 +34,10 @@ public class TerrainFeatureGen : MonoBehaviour
                     else if (mb.voxelData[x, y, z] == mushRootVoxel)
                     {
                         FeatureTree2(new Vector3Int(x, y, z));
+                    }
+                    else if (mb.voxelData[x, y, z] == sandstoneVoxel)
+                    {
+                        FeatureTree3(new Vector3Int(x, y, z));
                     }
                 }
             }
@@ -88,6 +94,17 @@ public class TerrainFeatureGen : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+    }
+
+    void FeatureTree3(Vector3Int pos)
+    {
+        if (pos.y < (mb.realChunkSize * mb.mapSize.y) - 16)
+        {
+            for (int i = 1; i < 5; i++)
+            {
+                mb.voxelData[pos.x, pos.y + i, pos.z] = cactiVoxel;
             }
         }
     }
