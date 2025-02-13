@@ -12,6 +12,7 @@ public class NoiseGenerator : MonoBehaviour
     [SerializeField] Voxel stoneVoxel;
     [SerializeField] Voxel rootVoxel;
     [SerializeField] Voxel sandVoxel;
+    [SerializeField] Voxel mushRootVoxel;
 
     [Header("Noise Params")]
     [SerializeField] float horizontalScale;
@@ -65,10 +66,15 @@ public class NoiseGenerator : MonoBehaviour
             return dirtVoxel;
         }
         if (height > pos.y)
-        {           
-            if (UnityEngine.Random.Range(0, 200) == 0)
+        {
+            float treeRand = UnityEngine.Random.Range(0, 50 * falloff);
+            if (treeRand > 0.5f && UnityEngine.Random.Range(0, 200) == 0)
             {
                 return rootVoxel;
+            }
+            else if (treeRand < 0.5f && UnityEngine.Random.Range(0, 200) == 0)
+            {
+                return mushRootVoxel;
             }
 
             return grassVoxel;

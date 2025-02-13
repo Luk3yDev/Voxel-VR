@@ -639,24 +639,32 @@ MonoBehaviour:
     m_Bits: 256
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   range: 5
   voxels:
   - {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
+  - {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   - {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
   - {fileID: 11400000, guid: 0f99a178128915547b562f8001bedbda, type: 2}
-  - {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   - {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
   - {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
+  - {fileID: 11400000, guid: 2fd22eedd7cd7594386c8a6173046ed8, type: 2}
   - {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
+  - {fileID: 11400000, guid: c873a57115f45a642a20d7fb16a6ca0d, type: 2}
+  - {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
+  - {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   voxelHandMats:
   - {fileID: 2100000, guid: 56a0d774199b3464c835a104168f8d91, type: 2}
+  - {fileID: 2100000, guid: 28bc7e9af0478c544ba6572b541a2bc2, type: 2}
   - {fileID: 2100000, guid: 899ea002f7892ac40911e569fbf13fb0, type: 2}
   - {fileID: 2100000, guid: 0d73e7b888aedbc489267fcf864df951, type: 2}
-  - {fileID: 2100000, guid: 28bc7e9af0478c544ba6572b541a2bc2, type: 2}
   - {fileID: 2100000, guid: dba0c65e1136ee24d988cea4f943b855, type: 2}
   - {fileID: 2100000, guid: 55ccc186ac34980478d0959b1f8c6bea, type: 2}
+  - {fileID: 2100000, guid: 66ef5da68d0b84343964ac00f8448ada, type: 2}
   - {fileID: 2100000, guid: 85c0ae68577c3cb40bb80e22d50b9811, type: 2}
+  - {fileID: 2100000, guid: 9f5d2667ef1699e48b8dec585a79e6e8, type: 2}
+  - {fileID: 2100000, guid: a032cd35ff078b447999d84d52aeb99b, type: 2}
+  - {fileID: 2100000, guid: a0092cbfabfff604fa3c0fbcd775f06f, type: 2}
   currentVoxel: 0
   indicator: {fileID: 1910625528}
   currentVoxelIndicator: {fileID: 721492414}
@@ -2219,6 +2227,7 @@ MonoBehaviour:
   stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   sandVoxel: {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
+  mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   horizontalScale: 30
   verticalScale: 15
   oddityScale: 15
@@ -2252,6 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
+  mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   woodVoxel: {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
   woodVoxel2: {fileID: 11400000, guid: 2fd22eedd7cd7594386c8a6173046ed8, type: 2}
   leavesVoxel: {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}

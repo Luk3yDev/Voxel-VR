@@ -5,6 +5,7 @@ using UnityEngine;
 public class TerrainFeatureGen : MonoBehaviour
 {
     [SerializeField] Voxel rootVoxel;
+    [SerializeField] Voxel mushRootVoxel;
     [SerializeField] Voxel woodVoxel;
     [SerializeField] Voxel woodVoxel2;
     [SerializeField] Voxel leavesVoxel;
@@ -26,8 +27,11 @@ public class TerrainFeatureGen : MonoBehaviour
                 {
                     if (mb.voxelData[x, y, z] == rootVoxel)
                     {
-                        if (Random.Range(0, 5) == 0) FeatureTree2(new Vector3Int(x, y, z)); // Chance of mushroom
-                        else FeatureTree(new Vector3Int(x, y, z));
+                        FeatureTree(new Vector3Int(x, y, z));
+                    }
+                    else if (mb.voxelData[x, y, z] == mushRootVoxel)
+                    {
+                        FeatureTree2(new Vector3Int(x, y, z));
                     }
                 }
             }
