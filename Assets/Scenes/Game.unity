@@ -2204,7 +2204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkSize: 8
-  mapSize: {x: 20, y: 8, z: 20}
+  mapSize: {x: 16, y: 8, z: 16}
   chunkPrefab: {fileID: 9151628178358892403, guid: b4a598f64d967ef44bf8916d8166eac1,
     type: 3}
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
