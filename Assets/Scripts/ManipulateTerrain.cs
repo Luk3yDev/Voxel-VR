@@ -36,6 +36,7 @@ public class ManipulateTerrain : MonoBehaviour
             Vector3 targetPos = hitInfo.point - (hitInfo.normal * 0.5f);
             Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
             indicator.SetActive(true);
+            indicator.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
             indicator.transform.position = voxelPos;
         }
         else
