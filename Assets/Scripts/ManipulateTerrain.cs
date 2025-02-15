@@ -26,8 +26,8 @@ public class ManipulateTerrain : MonoBehaviour
     [SerializeField] GameObject currentVoxelIndicator;
     [SerializeField] GameObject blockAudioObject;
 
-    float destroyCooldown = 0.3f;
-    float switchCooldown = 0.3f;
+    bool justBroke;
+    bool justSwitched;
 
     void Update()
     {
@@ -43,23 +43,15 @@ public class ManipulateTerrain : MonoBehaviour
             indicator.SetActive(false);
 
         float triggerValue = pinchAction.action.ReadValue<float>();
-        if (triggerValue > 0.5f && destroyCooldown <= 0)
+        if (triggerValue > 0.5f && justBroke == false)
         {
             DestroyVoxel();
-            destroyCooldown = 0.3f;
+            justBroke = true;
         }
-
-        if (destroyCooldown > 0)
-        {
-            destroyCooldown -= Time.deltaTime;
-        }
-        if (switchCooldown > 0)
-        {
-            switchCooldown -= Time.deltaTime;
-        }
+        if (triggerValue < 0.5f) justBroke = false;
 
         float gripValue = gripAction.action.ReadValue<float>();
-        if (gripValue > 0.5f && switchCooldown <= 0)
+        if (gripValue > 0.5f && justSwitched == false)
         {
             if (currentVoxel < voxels.Length - 1)
             {
@@ -70,8 +62,10 @@ public class ManipulateTerrain : MonoBehaviour
                 currentVoxel = 0;
             }
             currentVoxelIndicator.GetComponent<MeshRenderer>().material = voxelHandMats[currentVoxel];
-            switchCooldown = 0.3f;
+            
+            justSwitched = true;
         }
+        if (gripValue < 0.5f) justSwitched = false;
 
         if (buttonAction.action.triggered)
         {
