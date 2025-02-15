@@ -47,13 +47,14 @@ public class VoxelMeshBuilder : MonoBehaviour
                         {3, 2, 6, 7, 1, 0, 0},    //front
                         {1, 0, 4, 5, -1, 0, 0}    //back
                     };
-
-                    if (!voxelData[x, y, z].isAir)
-                        for (int o = 0; o < 6; o++)
-                        {
-                            if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].isAir)
-                                AddQuad(o, vertices.Count);
-                        }
+                    if (voxelData[x, y, z] != null)
+                        if (!voxelData[x, y, z].isAir)
+                            for (int o = 0; o < 6; o++)
+                            {
+                                if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]] != null)
+                                    if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].isAir)
+                                        AddQuad(o, vertices.Count);
+                            }
 
                     void AddQuad(int facenum, int v)
                     {

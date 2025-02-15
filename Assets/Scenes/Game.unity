@@ -2204,7 +2204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkSize: 8
-  mapSize: {x: 16, y: 8, z: 16}
+  mapSize: {x: 24, y: 8, z: 24}
   chunkPrefab: {fileID: 9151628178358892403, guid: b4a598f64d967ef44bf8916d8166eac1,
     type: 3}
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
@@ -2222,17 +2222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
-  grassVoxel: {fileID: 11400000, guid: 0f99a178128915547b562f8001bedbda, type: 2}
-  dirtVoxel: {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
-  stoneVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   sandVoxel: {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
-  horizontalScale: 30
-  verticalScale: 15
-  oddityScale: 15
-  oddity: 1.2
-  oddityOffset: 0.45
+  sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
+  biome: {fileID: 11400000, guid: 7d9225fc448b3764dbaf75460429cd7d, type: 2}
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0
@@ -2262,10 +2256,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
+  sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
   woodVoxel: {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
   woodVoxel2: {fileID: 11400000, guid: 2fd22eedd7cd7594386c8a6173046ed8, type: 2}
   leavesVoxel: {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
   leavesVoxel2: {fileID: 11400000, guid: c873a57115f45a642a20d7fb16a6ca0d, type: 2}
+  cactiVoxel: {fileID: 11400000, guid: 6d9c545bb889cf545b28ee7b2ae72643, type: 2}
 --- !u!1 &1910625528
 GameObject:
   m_ObjectHideFlags: 0
