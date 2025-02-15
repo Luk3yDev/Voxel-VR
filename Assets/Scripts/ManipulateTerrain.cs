@@ -21,9 +21,10 @@ public class ManipulateTerrain : MonoBehaviour
     [SerializeField] Material[] voxelHandMats;
     [SerializeField] int currentVoxel;
 
-    [Header("Visuals")]
+    [Header("Visuals and Effects")]
     [SerializeField] GameObject indicator;
     [SerializeField] GameObject currentVoxelIndicator;
+    [SerializeField] GameObject blockAudioObject;
 
     float destroyCooldown = 0.3f;
     float switchCooldown = 0.3f;
@@ -84,6 +85,12 @@ public class ManipulateTerrain : MonoBehaviour
             Vector3 targetPos = hitInfo.point - (hitInfo.normal * 0.5f);
             Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
 
+            Voxel voxelTB = map.GetVoxel(voxelPos);
+            if (voxelTB.breakSound != null)
+            {
+                GameObject soundObj = Instantiate(blockAudioObject, voxelPos, Quaternion.identity);
+                soundObj.GetComponent<AudioSource>().clip = voxelTB.breakSound;
+            }
             map.SetVoxel(voxelPos, voxels[0]);
         }
     }
@@ -97,6 +104,11 @@ public class ManipulateTerrain : MonoBehaviour
             if (!Physics.CheckSphere(targetPos, 0.45f, playerLayer))
             {
                 Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
+                if (voxels[currentVoxel].breakSound != null)
+                {
+                    GameObject soundObj = Instantiate(blockAudioObject, voxelPos, Quaternion.identity);
+                    soundObj.GetComponent<AudioSource>().clip = voxels[currentVoxel].breakSound;
+                }
                 map.SetVoxel(voxelPos, voxels[currentVoxel]);
             }
         }

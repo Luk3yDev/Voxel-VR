@@ -668,6 +668,8 @@ MonoBehaviour:
   currentVoxel: 0
   indicator: {fileID: 1910625528}
   currentVoxelIndicator: {fileID: 721492414}
+  blockAudioObject: {fileID: 5149047577577985372, guid: ea4f510bff8ae1b4895b8d965ce98edb,
+    type: 3}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

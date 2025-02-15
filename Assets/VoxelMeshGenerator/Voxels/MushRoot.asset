@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uvCoordinate: {x: 3, y: 0}
   isAir: 0
+  breakSound: {fileID: 8300000, guid: 4d6724808a0d6614690ad7dbbc52e2a6, type: 3}
