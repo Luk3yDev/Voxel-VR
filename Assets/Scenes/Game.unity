@@ -2226,7 +2226,7 @@ MonoBehaviour:
   sandVoxel: {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
-  biome: {fileID: 11400000, guid: 7d9225fc448b3764dbaf75460429cd7d, type: 2}
+  biome: {fileID: 11400000, guid: a3d143fa000a49e4aafcf5f396cf4eb4, type: 2}
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0
