@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LocomotionProvider: {fileID: 928257210}
   m_MinHeight: 0
-  m_MaxHeight: 0.1
+  m_MaxHeight: 0.5
 --- !u!136 &928257207
 CapsuleCollider:
   m_ObjectHideFlags: 0
