@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class AnimateHandOnInput : MonoBehaviour
+public class NetworkAnimateHand : NetworkBehaviour
 {
     public InputActionProperty pinchAnimationAction;
     public InputActionProperty gripAnimationAction;
@@ -12,6 +13,8 @@ public class AnimateHandOnInput : MonoBehaviour
 
     void Update()
     {
+        if (!IsOwner) return;
+
         float triggerValue = pinchAnimationAction.action.ReadValue<float>();
         float gripValue = gripAnimationAction.action.ReadValue<float>();
 
