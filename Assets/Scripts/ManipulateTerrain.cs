@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ManipulateTerrain : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class ManipulateTerrain : MonoBehaviour
     public InputActionProperty gripAction;
     public InputActionProperty buttonAction;
 
-    [SerializeField] MapBuilder map;
+    [SerializeField] MapBuilder world;
+    NetworkWorld netWorld;
 
     [Header("Raycast Parameters")]
     [SerializeField] LayerMask terrainLayer;
@@ -28,6 +30,11 @@ public class ManipulateTerrain : MonoBehaviour
 
     bool justBroke;
     bool justSwitched;
+
+    private void Awake()
+    {
+        netWorld = world.GetComponent<NetworkWorld>();
+    }
 
     void Update()
     {
@@ -80,13 +87,15 @@ public class ManipulateTerrain : MonoBehaviour
             Vector3 targetPos = hitInfo.point - (hitInfo.normal * 0.5f);
             Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
 
-            Voxel voxelTB = map.GetVoxel(voxelPos);
+            Voxel voxelTB = world.GetVoxel(voxelPos);
             if (voxelTB.breakSound != null)
             {
                 GameObject soundObj = Instantiate(blockAudioObject, voxelPos, Quaternion.identity);
                 soundObj.GetComponent<AudioSource>().clip = voxelTB.breakSound;
             }
-            map.SetVoxel(voxelPos, voxels[0]);
+
+            world.SetVoxel(voxelPos, voxels[0]);
+            netWorld.NetworkSetVoxel(voxelPos, voxels[0]);
         }
     }
 
@@ -104,7 +113,9 @@ public class ManipulateTerrain : MonoBehaviour
                     GameObject soundObj = Instantiate(blockAudioObject, voxelPos, Quaternion.identity);
                     soundObj.GetComponent<AudioSource>().clip = voxels[currentVoxel].breakSound;
                 }
-                map.SetVoxel(voxelPos, voxels[currentVoxel]);
+
+                world.SetVoxel(voxelPos, voxels[currentVoxel]);
+                netWorld.NetworkSetVoxel(voxelPos, voxels[currentVoxel]);
             }
         }
     }

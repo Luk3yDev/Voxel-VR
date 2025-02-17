@@ -31,7 +31,8 @@ public class NoiseGenerator : MonoBehaviour
 
     private void Awake()
     {
-        UnityEngine.Random.InitState(System.DateTime.Now.Second);
+        int code = GameObject.Find("Network Manager").GetComponent<NetworkConnect>().code.GetHashCode();
+        UnityEngine.Random.InitState(code);
         seed = UnityEngine.Random.Range(-1000, 1000);
         odditySeed = UnityEngine.Random.Range(-1000, 1000);
         mb = GetComponent<MapBuilder>();

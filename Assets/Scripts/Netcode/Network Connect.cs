@@ -9,13 +9,15 @@ using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NetUI : MonoBehaviour
+public class NetworkConnect : MonoBehaviour
 {
     public Button hostButton;
     public Button joinButton;
 
     public TMP_InputField joinCodeInput;
     public TMP_Text joinCodeText;
+
+    [HideInInspector] public string code;
 
     async void Start()
     { 
@@ -24,7 +26,7 @@ public class NetUI : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         hostButton.onClick.AddListener(CreateRelay);
-        joinButton.onClick.AddListener(() => JoinRelay(joinCodeInput.text));
+        joinButton.onClick.AddListener(() => JoinRelay(joinCodeInput.text));        
     }
 
     async void CreateRelay()
@@ -32,22 +34,28 @@ public class NetUI : MonoBehaviour
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
+        code = joinCode;
+
         joinCodeText.text = $"Code: {joinCode}";
 
         var relayServerData = new RelayServerData(allocation, "dtls");
 
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
-        NetworkManager.Singleton.StartHost(); 
+        NetworkManager.Singleton.StartHost();
+
+        
     }
 
     async void JoinRelay(string joinCode)
     {
+        code = joinCode;
+
         var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
         var relayServerData = new RelayServerData(joinAllocation, "dtls");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
-        NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.StartClient();        
     }
 
     // TextEditor te = new TextEditor(); te.text = joinCode; te.SelectAll(); te.Copy(); CLIPBOARD CODE FOR LATER

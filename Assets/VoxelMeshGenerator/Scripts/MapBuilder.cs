@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 
 public class MapBuilder : MonoBehaviour
@@ -15,14 +14,16 @@ public class MapBuilder : MonoBehaviour
     Dictionary<Vector3Int, VoxelMeshBuilder> builtChunks;
     [HideInInspector] public int realChunkSize;
     TerrainFeatureGen featureGen;
+    NetworkWorld netWorld;
 
     private void Awake()
     {
         noiseGenerator = GetComponent<NoiseGenerator>();
         featureGen = GetComponent<TerrainFeatureGen>();
+        netWorld = GetComponent<NetworkWorld>();
     }
 
-    private void Start()
+    public void CreateWorld()
     {
         GenerateMap();
         BuildMap();
