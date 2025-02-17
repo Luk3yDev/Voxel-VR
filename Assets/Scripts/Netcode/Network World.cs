@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class NetworkWorld : NetworkBehaviour
 {
     MapBuilder world;
-    [SerializeField] Voxel testVoxel;
+    Voxel voxelToSet;
 
     private void Start()
     {
@@ -14,13 +14,14 @@ public class NetworkWorld : NetworkBehaviour
     }
 
     [Rpc(SendTo.NotMe)]
-    void SetVoxelClientRpc(int x, int y, int z, string index)
+    void SetVoxelClientRpc(int x, int y, int z)
     {
-        world.SetVoxel(new Vector3Int(x, y, z), testVoxel);
+        world.SetVoxel(new Vector3Int(x, y, z), voxelToSet);
     }
 
     public void NetworkSetVoxel(Vector3Int voxelPos, Voxel voxel)
     {
-        SetVoxelClientRpc(voxelPos.x, voxelPos.y, voxelPos.z, "");
+        voxelToSet = voxel;
+        SetVoxelClientRpc(voxelPos.x, voxelPos.y, voxelPos.z);
     }
 }
