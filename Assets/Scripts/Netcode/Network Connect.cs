@@ -17,8 +17,6 @@ public class NetworkConnect : MonoBehaviour
     public TMP_InputField joinCodeInput;
     public TMP_Text joinCodeText;
 
-    [HideInInspector] public string code;
-
     async void Start()
     { 
         await UnityServices.InitializeAsync();
@@ -34,8 +32,6 @@ public class NetworkConnect : MonoBehaviour
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-        code = joinCode;
-
         joinCodeText.text = $"Code: {joinCode}";
 
         var relayServerData = new RelayServerData(allocation, "dtls");
@@ -44,18 +40,18 @@ public class NetworkConnect : MonoBehaviour
 
         NetworkManager.Singleton.StartHost();
 
-        
+        GameObject.Find("World").GetComponent<NoiseGenerator>().GenerateSeed(joinCode);
     }
 
     async void JoinRelay(string joinCode)
     {
-        code = joinCode;
-
         var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
         var relayServerData = new RelayServerData(joinAllocation, "dtls");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
-        NetworkManager.Singleton.StartClient();        
+        NetworkManager.Singleton.StartClient();
+
+        GameObject.Find("World").GetComponent<NoiseGenerator>().GenerateSeed(joinCode);
     }
 
     // TextEditor te = new TextEditor(); te.text = joinCode; te.SelectAll(); te.Copy(); CLIPBOARD CODE FOR LATER

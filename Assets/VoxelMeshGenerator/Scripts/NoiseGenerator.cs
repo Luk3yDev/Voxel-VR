@@ -29,12 +29,17 @@ public class NoiseGenerator : MonoBehaviour
     MapBuilder mb;
     Dictionary<Vector2Int, float> previouslySampledNoise = new Dictionary<Vector2Int, float>();
 
-    private void Awake()
+    public void GenerateSeed(string joinCode)
     {
-        int code = GameObject.Find("Network Manager").GetComponent<NetworkConnect>().code.GetHashCode();
+        int code = joinCode.GetHashCode();
+        Debug.Log(code);
         UnityEngine.Random.InitState(code);
         seed = UnityEngine.Random.Range(-1000, 1000);
         odditySeed = UnityEngine.Random.Range(-1000, 1000);
+    }
+
+    private void Awake()
+    {       
         mb = GetComponent<MapBuilder>();
 
         horizontalScale = biome.horizontalScale;

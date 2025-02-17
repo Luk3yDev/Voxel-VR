@@ -4149,9 +4149,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1907156670}
   - component: {fileID: 1907156669}
+  - component: {fileID: 1907156672}
   - component: {fileID: 1907156668}
   - component: {fileID: 1907156671}
-  - component: {fileID: 1907156672}
   - component: {fileID: 1907156673}
   m_Layer: 8
   m_Name: World
@@ -4264,7 +4264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc35b37143d11dd488659d46b58b4409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
 --- !u!1 &1910625528
 GameObject:
   m_ObjectHideFlags: 0
