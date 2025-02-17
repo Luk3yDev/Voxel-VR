@@ -32,7 +32,7 @@ public class NoiseGenerator : MonoBehaviour
     public void GenerateSeed(string joinCode)
     {
         int code = joinCode.GetHashCode();
-        Debug.Log(code);
+        Debug.Log($"World seed: {code}");
         UnityEngine.Random.InitState(code);
         seed = UnityEngine.Random.Range(-1000, 1000);
         odditySeed = UnityEngine.Random.Range(-1000, 1000);
