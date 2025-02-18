@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4687bb71dfef7154687d7f058a4f47ed, type: 3}
   m_Name: Leaves
   m_EditorClassIdentifier: 
-  uvCoordinate: {x: 2, y: 1}
+  uvCoordinate: {x: 1, y: 1}
   isAir: 0
   breakSound: {fileID: 8300000, guid: 4d6724808a0d6614690ad7dbbc52e2a6, type: 3}
-  index: 6

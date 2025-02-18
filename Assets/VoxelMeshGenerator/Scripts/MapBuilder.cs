@@ -25,6 +25,12 @@ public class MapBuilder : MonoBehaviour
 
     public void CreateWorld()
     {
+        /* THIS IS COSTLY
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        */
         GenerateMap();
         BuildMap();
     }

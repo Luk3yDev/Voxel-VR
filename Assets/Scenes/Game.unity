@@ -2282,7 +2282,6 @@ MonoBehaviour:
   joinButton: {fileID: 1501447779}
   joinCodeInput: {fileID: 671243752}
   joinCodeText: {fileID: 1705949341}
-  code: 
 --- !u!1 &1279073284
 GameObject:
   m_ObjectHideFlags: 0
