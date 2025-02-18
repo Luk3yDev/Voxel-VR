@@ -45,13 +45,13 @@ public class NetworkConnect : MonoBehaviour
 
     async void JoinRelay(string joinCode)
     {
-        var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+        var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode.ToUpper());
         var relayServerData = new RelayServerData(joinAllocation, "dtls");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
         NetworkManager.Singleton.StartClient();
 
-        GameObject.Find("World").GetComponent<NoiseGenerator>().GenerateSeed(joinCode);
+        GameObject.Find("World").GetComponent<NoiseGenerator>().GenerateSeed(joinCode.ToUpper());
     }
 
     // TextEditor te = new TextEditor(); te.text = joinCode; te.SelectAll(); te.Copy(); CLIPBOARD CODE FOR LATER
