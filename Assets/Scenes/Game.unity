@@ -2493,6 +2493,7 @@ MonoBehaviour:
   hostButton: {fileID: 811868548}
   joinButton: {fileID: 1501447779}
   joinCodeInput: {fileID: 671243752}
+  nameInput: {fileID: 0}
   joinCodeText: {fileID: 1705949341}
 --- !u!1 &1279073284
 GameObject:

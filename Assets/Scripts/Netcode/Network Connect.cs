@@ -15,6 +15,7 @@ public class NetworkConnect : MonoBehaviour
     public Button joinButton;
 
     public TMP_InputField joinCodeInput;
+    public TMP_InputField nameInput;
     public TMP_Text joinCodeText;
 
     async void Start()
