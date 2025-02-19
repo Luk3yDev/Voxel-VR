@@ -18,8 +18,27 @@ public class NetworkConnect : MonoBehaviour
     public TMP_InputField nameInput;
     public TMP_Text joinCodeText;
 
+    VRKeyboard vrKeyboard;
+
+    private void Awake()
+    {
+        vrKeyboard = FindObjectOfType<VRKeyboard>();
+    }
+
+    void OnKeyboardKeyPress(char key)
+    {
+        if (key != '*')
+            joinCodeInput.text = joinCodeInput.text + key;
+        else
+        {
+            joinCodeInput.text = joinCodeInput.text.Remove(-1);
+        }
+    }
+
     async void Start()
-    { 
+    {
+        vrKeyboard.OnKeyPressed += OnKeyboardKeyPress;
+
         await UnityServices.InitializeAsync();
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
