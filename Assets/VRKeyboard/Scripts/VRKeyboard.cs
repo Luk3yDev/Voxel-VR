@@ -40,9 +40,9 @@ public class VRKeyboard : MonoBehaviour
                 {
                     RectTransform key = Instantiate(keyPrefab, rowParent);
                     if (c != '*')
-                        key.GetChild(0).GetComponent<TMP_Text>().text = keyboardStructure[rowID, colID].ToString();
+                        key.GetChild(0).GetComponent<TMP_Text>().text = keyboardStructure[rowID, colID].ToString().ToUpper();
                     else
-                        key.GetChild(0).GetComponent<TMP_Text>().text = "Backspace";
+                        key.GetChild(0).GetComponent<TMP_Text>().text = "BACK\nSPACE";
                     key.GetComponent<Button>().onClick.AddListener(new UnityEngine.Events.UnityAction(() =>
                     {
                         KeyPressed(c);
@@ -54,7 +54,7 @@ public class VRKeyboard : MonoBehaviour
 
     void test(char key)
     {
-        Debug.Log(key);
+        //Debug.Log(key);
     }
 
     void KeyPressed(char key)
