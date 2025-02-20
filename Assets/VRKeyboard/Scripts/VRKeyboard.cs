@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.XR.Interaction;
 using UnityEngine.UI;
 
 public class VRKeyboard : MonoBehaviour
@@ -23,8 +24,6 @@ public class VRKeyboard : MonoBehaviour
 
     private void Start()
     {
-        OnKeyPressed += test;
-
         GenerateKeyboard();
     }
 
@@ -57,8 +56,15 @@ public class VRKeyboard : MonoBehaviour
         //Debug.Log(key);
     }
 
+    // I don't fucking know
+    bool nahG = false;
     void KeyPressed(char key)
     {
-        OnKeyPressed?.Invoke(key);
+        if (!nahG)
+        {
+            OnKeyPressed?.Invoke(key);
+            nahG = true;
+        }
+        else nahG = false;
     }
 }

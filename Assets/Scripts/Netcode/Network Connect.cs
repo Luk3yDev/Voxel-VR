@@ -14,7 +14,7 @@ public class NetworkConnect : MonoBehaviour
     public Button hostButton;
     public Button joinButton;
 
-    public TMP_InputField joinCodeInput;
+    public TMP_Text joinCodeInput;
     public TMP_InputField nameInput;
     public TMP_Text joinCodeText;
 
@@ -31,7 +31,8 @@ public class NetworkConnect : MonoBehaviour
             joinCodeInput.text = joinCodeInput.text + key;
         else
         {
-            joinCodeInput.text = joinCodeInput.text.Remove(-1);
+            if (joinCodeInput.text.Length > 0)
+                joinCodeInput.text = joinCodeInput.text.Remove(joinCodeInput.text.Length-1);
         }
     }
 
