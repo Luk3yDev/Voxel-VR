@@ -23,6 +23,11 @@ public class MapBuilder : MonoBehaviour
         netWorld = GetComponent<NetworkWorld>();
     }
 
+    public void NetworkCreateWorld()
+    {
+        netWorld.CreateWorldRpc();
+    }
+
     public void CreateWorld()
     {
         /* THIS IS COSTLY
@@ -31,6 +36,7 @@ public class MapBuilder : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
         */
+
         GenerateMap();
         BuildMap();
     }

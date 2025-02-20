@@ -18,11 +18,13 @@ public class NetworkConnect : MonoBehaviour
     public TMP_InputField nameInput;
     public TMP_Text joinCodeText;
 
+    public GameObject startGameButton;
+
     VRKeyboard vrKeyboard;
 
     private void Awake()
     {
-        vrKeyboard = FindObjectOfType<VRKeyboard>();
+        vrKeyboard = FindObjectOfType<VRKeyboard>();    
     }
 
     void OnKeyboardKeyPress(char key)
@@ -62,6 +64,8 @@ public class NetworkConnect : MonoBehaviour
         NetworkManager.Singleton.StartHost();
 
         GameObject.Find("World").GetComponent<NoiseGenerator>().GenerateSeed(joinCode);
+
+        startGameButton.SetActive(true);
     }
 
     async void JoinRelay(string joinCode)

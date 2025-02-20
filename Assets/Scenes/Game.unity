@@ -2980,6 +2980,7 @@ MonoBehaviour:
   joinCodeInput: {fileID: 1991221144}
   nameInput: {fileID: 0}
   joinCodeText: {fileID: 1705949341}
+  startGameButton: {fileID: 1810894126}
 --- !u!1 &1279073284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4653,7 +4654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17254902, g: 0.16078432, b: 0.21960784, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4952,7 +4953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1810894127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5031,7 +5032,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1907156668}
         m_TargetAssemblyTypeName: MapBuilder, Assembly-CSharp
-        m_MethodName: CreateWorld
+        m_MethodName: NetworkCreateWorld
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

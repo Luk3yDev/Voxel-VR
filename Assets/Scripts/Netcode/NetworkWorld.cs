@@ -12,7 +12,7 @@ public class NetworkWorld : NetworkBehaviour
         world = GetComponent<MapBuilder>();
     }
 
-    [Rpc(SendTo.NotMe)]
+    [Rpc(SendTo.Everyone)]
     public void SetVoxelClientRpc(int x, int y, int z, int voxelIndex)
     {
         world.SetVoxel(new Vector3Int(x, y, z), VoxelIndexer.IndexToVoxel(voxelIndex));
@@ -23,5 +23,13 @@ public class NetworkWorld : NetworkBehaviour
         if (world == null) return;
         if (!IsOwner) return;
         SetVoxelClientRpc(voxelPos.x, voxelPos.y, voxelPos.z, VoxelIndexer.VoxelToIndex(voxel));
+    }
+
+    [Rpc(SendTo.NotServer)]
+    public void CreateWorldRpc()
+    {
+        if (world == null) return;
+        if (!IsOwner) return;
+        world.CreateWorld();
     }
 }
