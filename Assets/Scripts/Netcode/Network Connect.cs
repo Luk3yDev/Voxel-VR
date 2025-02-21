@@ -14,7 +14,7 @@ public class NetworkConnect : MonoBehaviour
     public Button hostButton;
     public Button joinButton;
 
-    public TMP_Text joinCodeInput;
+    public TMP_InputField joinCodeInput;
     public TMP_InputField nameInput;
     public TMP_Text joinCodeText;
 
@@ -47,15 +47,24 @@ public class NetworkConnect : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         hostButton.onClick.AddListener(CreateRelay);
-        joinButton.onClick.AddListener(() => JoinRelay(joinCodeInput.text));        
+        joinButton.onClick.AddListener(() => JoinRelay(joinCodeInput.text));
     }
 
+    bool nahBro2 = false;
     async void CreateRelay()
     {
+        if (nahBro2) return;
+        else
+        {
+            nahBro2 = false;
+        }
+        nahBro2 = true;
+
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
         joinCodeText.text = $"Code: {joinCode}";
+        Debug.Log($"Hosted at: {joinCode}");
 
         var relayServerData = new RelayServerData(allocation, "dtls");
 
@@ -68,8 +77,19 @@ public class NetworkConnect : MonoBehaviour
         startGameButton.SetActive(true);
     }
 
+    bool nahBro = false;
     async void JoinRelay(string joinCode)
     {
+        if (nahBro) return;
+        else
+        {
+            nahBro = false;
+        }
+        nahBro = true;
+
+        joinCode = joinCode.Substring(0, 6);
+        Debug.Log($"Tried to join: {joinCode.ToUpper()}");
+
         var joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode.ToUpper());
         var relayServerData = new RelayServerData(joinAllocation, "dtls");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
