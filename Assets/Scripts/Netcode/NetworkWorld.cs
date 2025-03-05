@@ -25,11 +25,10 @@ public class NetworkWorld : NetworkBehaviour
         SetVoxelClientRpc(voxelPos.x, voxelPos.y, voxelPos.z, VoxelIndexer.VoxelToIndex(voxel));
     }
 
-    [Rpc(SendTo.NotServer)]
-    public void CreateWorldRpc()
+    [ClientRpc]
+    public void CreateWorldClientRpc()
     {
-        if (world == null) return;
         if (!IsOwner) return;
-        world.CreateWorld();
+        world?.CreateWorld();
     }
 }
