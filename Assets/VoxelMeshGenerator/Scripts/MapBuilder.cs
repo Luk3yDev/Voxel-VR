@@ -26,7 +26,7 @@ public class MapBuilder : MonoBehaviour
 
     public void NetworkCreateWorld()
     {
-        netWorld.CreateWorldServerRpc();
+        netWorld.NetworkCreateWorld();
     }
 
     public void CreateWorld()

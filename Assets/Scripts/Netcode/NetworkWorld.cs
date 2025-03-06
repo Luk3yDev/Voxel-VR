@@ -12,7 +12,13 @@ public class NetworkWorld : NetworkBehaviour
         world = GetComponent<MapBuilder>();
     }
 
-    [Rpc(SendTo.Everyone)]
+    [ServerRpc(RequireOwnership = false)]
+    public void SetVoxelServerRpc(int x, int y, int z, int voxelIndex)
+    {
+        SetVoxelClientRpc(x, y, z, voxelIndex);
+    }
+
+    [ClientRpc]
     public void SetVoxelClientRpc(int x, int y, int z, int voxelIndex)
     {
         world.SetVoxel(new Vector3Int(x, y, z), VoxelIndexer.IndexToVoxel(voxelIndex));
@@ -20,16 +26,25 @@ public class NetworkWorld : NetworkBehaviour
 
     public void NetworkSetVoxel(Vector3Int voxelPos, Voxel voxel)
     {
-        if (world == null) return;
-        if (!IsOwner) return;
-        SetVoxelClientRpc(voxelPos.x, voxelPos.y, voxelPos.z, VoxelIndexer.VoxelToIndex(voxel));
+        SetVoxelServerRpc(voxelPos.x, voxelPos.y, voxelPos.z, VoxelIndexer.VoxelToIndex(voxel));
+    }
+    public void NetworkCreateWorld()
+    {
+        if (!IsServer) return;
+        CreateWorldServerRpc();
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void CreateWorldServerRpc()
     {
-        // Only the server should call the CreateWorldClientRpc
-        CreateWorldClientRpc();
+        try
+        {
+            CreateWorldClientRpc();
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error in CreateWorldServerRpc: {ex.Message}");
+        }
     }
 
     [ClientRpc]
