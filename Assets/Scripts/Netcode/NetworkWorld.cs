@@ -25,10 +25,16 @@ public class NetworkWorld : NetworkBehaviour
         SetVoxelClientRpc(voxelPos.x, voxelPos.y, voxelPos.z, VoxelIndexer.VoxelToIndex(voxel));
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void CreateWorldServerRpc()
+    {
+        // Only the server should call the CreateWorldClientRpc
+        CreateWorldClientRpc();
+    }
+
     [ClientRpc]
     public void CreateWorldClientRpc()
     {
-        if (!IsOwner) return;
         world?.CreateWorld();
     }
 }

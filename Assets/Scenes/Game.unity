@@ -5592,6 +5592,7 @@ MonoBehaviour:
     type: 3}
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
   realChunkSize: 0
+  spawnRoom: {fileID: 2090774735}
 --- !u!114 &1907156669
 MonoBehaviour:
   m_ObjectHideFlags: 0

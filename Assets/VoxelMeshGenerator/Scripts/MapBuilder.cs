@@ -15,6 +15,7 @@ public class MapBuilder : MonoBehaviour
     [HideInInspector] public int realChunkSize;
     TerrainFeatureGen featureGen;
     NetworkWorld netWorld;
+    [SerializeField] GameObject spawnRoom;
 
     private void Awake()
     {
@@ -25,8 +26,7 @@ public class MapBuilder : MonoBehaviour
 
     public void NetworkCreateWorld()
     {
-        CreateWorld();
-        netWorld.CreateWorldClientRpc();
+        netWorld.CreateWorldServerRpc();
     }
 
     public void CreateWorld()
@@ -40,6 +40,8 @@ public class MapBuilder : MonoBehaviour
 
         GenerateMap();
         BuildMap();
+
+        spawnRoom.SetActive(false);
     }
 
     public void SetVoxel(Vector3Int voxelPos, Voxel voxel)
