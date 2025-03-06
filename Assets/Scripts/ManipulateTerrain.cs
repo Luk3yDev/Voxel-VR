@@ -94,7 +94,7 @@ public class ManipulateTerrain : MonoBehaviour
                 soundObj.GetComponent<AudioSource>().clip = voxelTB.breakSound;
             }
 
-            //world.SetVoxel(voxelPos, voxels[0]);
+            world.SetVoxel(voxelPos, voxels[0]);
             netWorld.NetworkSetVoxel(voxelPos, voxels[0]);
         }
     }
@@ -114,7 +114,7 @@ public class ManipulateTerrain : MonoBehaviour
                     soundObj.GetComponent<AudioSource>().clip = voxels[currentVoxel].breakSound;
                 }
 
-                //world.SetVoxel(voxelPos, voxels[currentVoxel]);
+                world.SetVoxel(voxelPos, voxels[currentVoxel]);
                 netWorld.NetworkSetVoxel(voxelPos, voxels[currentVoxel]);
             }
         }
