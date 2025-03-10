@@ -68,13 +68,7 @@ public class MapBuilder : MonoBehaviour
     private void Update()
     {
         squareRenderDistance = renderDistance * renderDistance;
-
-        chunkTick -= Time.deltaTime;
-        if (chunkTick <= 0)
-        {
-            LoadUnloadChunks();
-            chunkTick = 1/20;
-        }      
+        LoadUnloadChunks();
     }
 
     private void LoadUnloadChunks()
