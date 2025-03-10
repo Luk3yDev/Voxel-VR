@@ -19,7 +19,9 @@ public class NoiseGenerator : MonoBehaviour
     int seed;
     int odditySeed;
     MapBuilder mb;
-    Dictionary<Vector2Int, float> previouslySampledNoise = new Dictionary<Vector2Int, float>();
+    Dictionary<Vector2Int, float> previouslySampledNoise = new();
+    Dictionary<Vector2Int, int> sampledBiomeNoise = new();
+    float[] biomeSeeds;
 
     public void GenerateSeed(string joinCode)
     {
@@ -34,14 +36,35 @@ public class NoiseGenerator : MonoBehaviour
     {       
         mb = GetComponent<MapBuilder>();
         biomes = Resources.LoadAll<Biome>("Biomes");
+        biomeSeeds = new float[biomes.Length];
+        for (int b = 0; b < biomes.Length; b++)
+        {
+            biomeSeeds[b] = UnityEngine.Random.Range(-1000, 1000);
+        }
     }
 
     public Voxel GetVoxelAtPos(Vector3Int pos)
     {
-        float biomeNoise = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / biomeScale);
-        biomeNoise = Mathf.FloorToInt((biomeNoise * 0.5f + 0.5f) * biomes.Length);
-        biomeNoise = Mathf.Clamp(biomeNoise, 0, biomes.Length - 1);
-        biome = biomes[(int)biomeNoise];
+        if (!sampledBiomeNoise.TryGetValue(new Vector2Int(pos.x, pos.z), out int chosenBiome))
+        {
+            Dictionary<int, float> biomeNoise = new();
+            float bestNoise = -1;
+
+            for (int b = 0; b < biomes.Length; b++)
+            {               
+                biomeNoise.Add(b, Mathf.PerlinNoise((float)(pos.x + biomeSeeds[b]) / biomeScale, (float)(pos.z + biomeSeeds[b]) / biomeScale));
+            }
+            foreach (KeyValuePair<int, float> dBiome in biomeNoise)
+            {
+                if (dBiome.Value > bestNoise)
+                {
+                    bestNoise = dBiome.Value;
+                    chosenBiome = dBiome.Key;
+                }
+            }
+            sampledBiomeNoise.Add(new Vector2Int(pos.x, pos.z), chosenBiome);
+        }
+        biome = biomes[chosenBiome];
 
         int centerX = (mb.mapSize.x * mb.realChunkSize) / 2;
         int centerZ = (mb.mapSize.z * mb.realChunkSize) / 2;
@@ -49,13 +72,12 @@ public class NoiseGenerator : MonoBehaviour
         float distanceFromCenter = Mathf.Sqrt((pos.x - centerX) * (pos.x - centerX) + (pos.z - centerZ) * (pos.z - centerZ));
         float falloff = Mathf.Clamp01(Mathf.Pow(distanceFromCenter / centerX, 2));
 
-        float noiseVal = 0;
-        if (!previouslySampledNoise.TryGetValue(new Vector2Int(pos.x, pos.z), out noiseVal))
+        if (!previouslySampledNoise.TryGetValue(new Vector2Int(pos.x, pos.z), out float noiseVal))
         {
             noiseVal = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / biome.horizontalScale);
             previouslySampledNoise.Add(new Vector2Int(pos.x, pos.z), noiseVal);
-        }       
-        
+        }
+
         float noiseValT = noise.snoise(new float3((float)pos.x + odditySeed, (float)pos.y + odditySeed, (float)pos.z + odditySeed) / biome.oddityScale);
         noiseVal += (noiseValT + (biome.oddityOffset - 0.5f)) * biome.oddity;
 
