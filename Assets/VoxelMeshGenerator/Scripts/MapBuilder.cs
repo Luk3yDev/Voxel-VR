@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapBuilder : MonoBehaviour
@@ -13,15 +14,28 @@ public class MapBuilder : MonoBehaviour
     public Voxel[,,] voxelData;
     Dictionary<Vector3Int, VoxelMeshBuilder> builtChunks;
     [HideInInspector] public int realChunkSize;
+
     TerrainFeatureGen featureGen;
     NetworkWorld netWorld;
     [SerializeField] GameObject spawnRoom;
+    [SerializeField] int renderDistance;
+    float squareRenderDistance;
+
+
+    List<GameObject> chunkObjects = new List<GameObject>();
+    Transform player;
 
     private void Awake()
     {
         noiseGenerator = GetComponent<NoiseGenerator>();
         featureGen = GetComponent<TerrainFeatureGen>();
         netWorld = GetComponent<NetworkWorld>();
+        player = GameObject.Find("Player").transform;
+    }
+
+    private void Start()
+    {
+        CreateWorld();
     }
 
     public void NetworkCreateWorld()
@@ -42,6 +56,35 @@ public class MapBuilder : MonoBehaviour
         BuildMap();
 
         spawnRoom.SetActive(false);
+
+        VoxelMeshBuilder[] collection = builtChunks.Values.ToArray();
+        foreach (VoxelMeshBuilder chunk in collection)
+        {
+            chunkObjects.Add(chunk.gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        squareRenderDistance = renderDistance * renderDistance;
+        LoadUnloadChunks();
+    }
+
+    private void LoadUnloadChunks()
+    {
+        foreach (GameObject chunk in chunkObjects)
+        {
+            //float distance = Vector3.Distance(player.position, chunk.transform.position);
+            float distance = (player.position - chunk.transform.position).sqrMagnitude;
+            if (distance >= squareRenderDistance)
+            {
+                if (chunk.activeSelf) chunk.SetActive(false);
+            }
+            else
+            {
+                if (!chunk.activeSelf) chunk.SetActive(true);
+            }
+        }
     }
 
     public void SetVoxel(Vector3Int voxelPos, Voxel voxel)
