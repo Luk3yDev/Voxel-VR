@@ -20,6 +20,7 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] GameObject spawnRoom;
     [SerializeField] int renderDistance;
     float squareRenderDistance;
+    float chunkTick = 1/20;
 
 
     List<GameObject> chunkObjects = new List<GameObject>();
@@ -67,7 +68,13 @@ public class MapBuilder : MonoBehaviour
     private void Update()
     {
         squareRenderDistance = renderDistance * renderDistance;
-        LoadUnloadChunks();
+
+        chunkTick -= Time.deltaTime;
+        if (chunkTick <= 0)
+        {
+            LoadUnloadChunks();
+            chunkTick = 1/20;
+        }      
     }
 
     private void LoadUnloadChunks()
