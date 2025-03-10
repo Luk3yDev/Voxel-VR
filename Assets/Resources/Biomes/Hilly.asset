@@ -21,6 +21,6 @@ MonoBehaviour:
   oddityScale: 20
   oddity: 0.5
   oddityOffset: 0.5
-  generateTrees: 0
+  generateTrees: 1
   generateMushrooms: 0
   generateCacti: 0
