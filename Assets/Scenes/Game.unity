@@ -5586,8 +5586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046cb7e87fa2fd84995c184dcd79b6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkSize: 8
-  mapSize: {x: 64, y: 8, z: 64}
+  chunkSize: 32
+  mapSize: {x: 10, y: 2, z: 10}
   chunkPrefab: {fileID: 9151628178358892403, guid: b4a598f64d967ef44bf8916d8166eac1,
     type: 3}
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
