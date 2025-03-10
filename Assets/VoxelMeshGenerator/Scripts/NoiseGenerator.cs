@@ -38,8 +38,9 @@ public class NoiseGenerator : MonoBehaviour
 
     public Voxel GetVoxelAtPos(Vector3Int pos)
     {
-        float biomeNoise = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / biomeScale) * biomes.Length;
-        biomeNoise = Mathf.Clamp(Mathf.FloorToInt(biomeNoise), 0, biomes.Length);
+        float biomeNoise = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / biomeScale);
+        biomeNoise = Mathf.FloorToInt((biomeNoise * 0.5f + 0.5f) * biomes.Length);
+        biomeNoise = Mathf.Clamp(biomeNoise, 0, biomes.Length - 1);
         biome = biomes[(int)biomeNoise];
 
         int centerX = (mb.mapSize.x * mb.realChunkSize) / 2;

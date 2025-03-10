@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4687bb71dfef7154687d7f058a4f47ed, type: 3}
-  m_Name: Sandstone
+  m_Name: RootMush
   m_EditorClassIdentifier: 
-  uvCoordinate: {x: 0, y: 0}
+  uvCoordinate: {x: 1, y: 0}
   isAir: 0
-  breakSound: {fileID: 8300000, guid: 788c48616e06b6a4bb3caef522697e85, type: 3}
+  breakSound: {fileID: 8300000, guid: 5f77ce49e86797a47ac85655d97f106e, type: 3}

@@ -5610,7 +5610,7 @@ MonoBehaviour:
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
-  biomeScale: 20
+  biomeScale: 100
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0
