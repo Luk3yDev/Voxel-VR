@@ -8,21 +8,13 @@ public class NoiseGenerator : MonoBehaviour
     [Header("Voxels")]
     [SerializeField] Voxel airVoxel;
     [SerializeField] Voxel rootVoxel;
-    [SerializeField] Voxel sandVoxel;
     [SerializeField] Voxel mushRootVoxel;
     [SerializeField] Voxel sandstoneVoxel;
 
-    [SerializeField] Biome biome;
-
-    float horizontalScale;
-    float verticalScale;
-    float oddityScale;
-    float oddity;
-    float oddityOffset;
-
-    Voxel surfaceVoxel;
-    Voxel dirtVoxel;
-    Voxel undergroundVoxel;
+    [Header("Noise Parameters")]
+    [SerializeField] float biomeScale;
+    Biome biome;
+    Biome[] biomes;
 
     int seed;
     int odditySeed;
@@ -41,19 +33,15 @@ public class NoiseGenerator : MonoBehaviour
     private void Awake()
     {       
         mb = GetComponent<MapBuilder>();
-
-        horizontalScale = biome.horizontalScale;
-        verticalScale = biome.verticalScale;
-        oddityScale = biome.oddityScale;
-        oddity = biome.oddity;
-        oddityOffset = biome.oddityOffset;
-        surfaceVoxel = biome.surfaceVoxel;
-        dirtVoxel = biome.dirtVoxel;
-        undergroundVoxel = biome.undergroundVoxel;
+        biomes = Resources.LoadAll<Biome>("Biomes");
     }
 
     public Voxel GetVoxelAtPos(Vector3Int pos)
     {
+        float biomeNoise = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / biomeScale) * biomes.Length;
+        biomeNoise = Mathf.Clamp(Mathf.FloorToInt(biomeNoise), 0, biomes.Length);
+        biome = biomes[(int)biomeNoise];
+
         int centerX = (mb.mapSize.x * mb.realChunkSize) / 2;
         int centerZ = (mb.mapSize.z * mb.realChunkSize) / 2;
 
@@ -63,26 +51,26 @@ public class NoiseGenerator : MonoBehaviour
         float noiseVal = 0;
         if (!previouslySampledNoise.TryGetValue(new Vector2Int(pos.x, pos.z), out noiseVal))
         {
-            noiseVal = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / horizontalScale);
+            noiseVal = noise.snoise(new float3((float)pos.x + seed, 0, (float)pos.z + seed) / biome.horizontalScale);
             previouslySampledNoise.Add(new Vector2Int(pos.x, pos.z), noiseVal);
         }       
         
-        float noiseValT = noise.snoise(new float3((float)pos.x + odditySeed, (float)pos.y + odditySeed, (float)pos.z + odditySeed) / oddityScale);
-        noiseVal += (noiseValT + (oddityOffset - 0.5f)) * oddity;
+        float noiseValT = noise.snoise(new float3((float)pos.x + odditySeed, (float)pos.y + odditySeed, (float)pos.z + odditySeed) / biome.oddityScale);
+        noiseVal += (noiseValT + (biome.oddityOffset - 0.5f)) * biome.oddity;
 
-        float height = ((noiseVal + 1) * verticalScale * (1f - falloff));
+        float height = ((noiseVal + 1) * biome.verticalScale * (1f - falloff));
         
         if (height > pos.y + 4)
         {
-            return undergroundVoxel;
+            return biome.undergroundVoxel;
         }
         if (height > pos.y && pos.y < 3)
         {
-            return sandVoxel;
+            return biome.sandVoxel;
         }
         if (height > pos.y + 2)
         {
-            return dirtVoxel;
+            return biome.dirtVoxel;
         }
         if (height > pos.y)
         {           
@@ -101,7 +89,7 @@ public class NoiseGenerator : MonoBehaviour
                 return sandstoneVoxel;
             }
 
-            return surfaceVoxel;
+            return biome.surfaceVoxel;
         }
         return airVoxel;
     }

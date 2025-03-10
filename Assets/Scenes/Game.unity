@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1ff10db89410b419ee3b021588299c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.1
+  Speed: 0.4
 --- !u!64 &393299681
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5593,7 +5593,7 @@ MonoBehaviour:
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
   realChunkSize: 0
   spawnRoom: {fileID: 2090774735}
-  renderDistance: 256
+  renderDistance: 196
 --- !u!114 &1907156669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5608,10 +5608,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
-  sandVoxel: {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
-  biome: {fileID: 11400000, guid: d46b1f69fcd7d3b4184b8057f71c8d5a, type: 2}
+  biomeScale: 20
 --- !u!4 &1907156670
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class Biome : ScriptableObject
     public Voxel surfaceVoxel;
     public Voxel dirtVoxel;
     public Voxel undergroundVoxel;
+    public Voxel sandVoxel;
 
     public float horizontalScale;
     public float verticalScale;
