@@ -51,8 +51,10 @@ public class NoiseGenerator : MonoBehaviour
             float bestNoise = -1;
 
             for (int b = 0; b < biomes.Length; b++)
-            {               
-                biomeNoise.Add(b, Mathf.PerlinNoise((float)(pos.x + biomeSeeds[b]) / biomeScale, (float)(pos.z + biomeSeeds[b]) / biomeScale));
+            {
+                float bnoise = Mathf.PerlinNoise((float)(pos.x + biomeSeeds[b]) / biomeScale, (float)(pos.z + biomeSeeds[b]) / biomeScale);
+
+                biomeNoise.Add(b, bnoise);
             }
             foreach (KeyValuePair<int, float> dBiome in biomeNoise)
             {
