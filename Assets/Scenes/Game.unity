@@ -5586,14 +5586,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046cb7e87fa2fd84995c184dcd79b6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkSize: 32
-  mapSize: {x: 12, y: 2, z: 12}
+  chunkSize: 16
+  mapSize: {x: 24, y: 2, z: 24}
   chunkPrefab: {fileID: 9151628178358892403, guid: b4a598f64d967ef44bf8916d8166eac1,
     type: 3}
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
   realChunkSize: 0
   spawnRoom: {fileID: 2090774735}
-  renderDistance: 196
+  renderDistance: 144
 --- !u!114 &1907156669
 MonoBehaviour:
   m_ObjectHideFlags: 0
