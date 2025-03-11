@@ -48,9 +48,9 @@ public class VoxelMeshBuilder : MonoBehaviour
                         {1, 0, 4, 5, -1, 0, 0},    //back
 
                         {0, 2, 6, 4, 0, 0, 0},     // +X +Z
-                        {4, 6, 2, 0, 0, 0, 0},     // -X -Z
-                        {1, 3, 7, 5, 0, 0, 0},     // -X +Z
-                        {5, 7, 3, 1, 0, 0, 0}      // +X -Z
+                        {2, 0, 4, 6, 0, 0, 0},     // -X -Z
+                        {1, 3, 7, 5, 0, 0, 0},     // -X +Z //
+                        {3, 1, 5, 7, 0, 0, 0}      // +X -Z //
                     };
                     if (voxelData[x, y, z] != null)
                         if (!voxelData[x, y, z].isAir)
@@ -89,6 +89,7 @@ public class VoxelMeshBuilder : MonoBehaviour
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
+        mesh.OptimizeReorderVertexBuffer();
         return mesh;
     }
 }

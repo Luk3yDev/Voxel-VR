@@ -17,4 +17,5 @@ public class Biome : ScriptableObject
     public bool generateTrees;
     public bool generateMushrooms;
     public bool generateCacti;
+    public bool generateFlowers;
 }

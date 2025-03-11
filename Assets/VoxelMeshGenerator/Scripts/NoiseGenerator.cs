@@ -10,6 +10,7 @@ public class NoiseGenerator : MonoBehaviour
     [SerializeField] Voxel rootVoxel;
     [SerializeField] Voxel mushRootVoxel;
     [SerializeField] Voxel sandstoneVoxel;
+    [SerializeField] Voxel[] flowerVoxels;
 
     [Header("Noise Parameters")]
     [SerializeField] float biomeScale;
@@ -115,6 +116,13 @@ public class NoiseGenerator : MonoBehaviour
             }
 
             return biome.surfaceVoxel;
+        }
+        if (height > pos.y - 1 && biome.generateFlowers)
+        {
+            if (UnityEngine.Random.Range(0, 150) == 0)
+            {
+                return flowerVoxels[UnityEngine.Random.Range(0, flowerVoxels.Length)];
+            }
         }
         return airVoxel;
     }
