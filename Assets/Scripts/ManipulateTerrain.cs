@@ -8,6 +8,7 @@ public class ManipulateTerrain : MonoBehaviour
 {
     public InputActionProperty pinchAction;
     public InputActionProperty gripAction;
+    public InputActionProperty LGripAction;
     public InputActionProperty buttonAction;
 
     [SerializeField] MapBuilder world;
@@ -58,6 +59,7 @@ public class ManipulateTerrain : MonoBehaviour
         if (triggerValue < 0.5f) justBroke = false;
 
         float gripValue = gripAction.action.ReadValue<float>();
+        float LGripValue = LGripAction.action.ReadValue<float>();
         if (gripValue > 0.5f && justSwitched == false)
         {
             if (currentVoxel < voxels.Length - 1)
@@ -73,6 +75,22 @@ public class ManipulateTerrain : MonoBehaviour
             justSwitched = true;
         }
         if (gripValue < 0.5f) justSwitched = false;
+
+        if (LGripValue > 0.5f && justSwitched == false)
+        {
+            if (currentVoxel > 0)
+            {
+                currentVoxel--;
+            }
+            else
+            {
+                currentVoxel = voxels.Length;
+            }
+            currentVoxelIndicator.GetComponent<MeshRenderer>().material = voxelHandMats[currentVoxel];
+
+            justSwitched = true;
+        }
+        if (LGripValue < 0.5f) justSwitched = false;
 
         if (buttonAction.action.triggered)
         {
