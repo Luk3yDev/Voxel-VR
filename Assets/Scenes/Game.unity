@@ -530,6 +530,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  LGripAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c18ab235-b317-4bf7-8c9a-607b5235ab1d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   buttonAction:
     m_UseReference: 1
     m_Action:
@@ -5586,8 +5598,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046cb7e87fa2fd84995c184dcd79b6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkSize: 16
-  mapSize: {x: 24, y: 2, z: 24}
+  chunkSize: 12
+  mapSize: {x: 24, y: 8, z: 24}
   chunkPrefab: {fileID: 9151628178358892403, guid: b4a598f64d967ef44bf8916d8166eac1,
     type: 3}
   airVoxel: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
