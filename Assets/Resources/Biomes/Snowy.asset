@@ -24,3 +24,5 @@ MonoBehaviour:
   generateTrees: 0
   generateMushrooms: 0
   generateCacti: 0
+  generateFlowers: 0
+  generatePineTrees: 1

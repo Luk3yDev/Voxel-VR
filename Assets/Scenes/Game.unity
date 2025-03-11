@@ -5610,6 +5610,7 @@ MonoBehaviour:
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
+  pineRoot: {fileID: 11400000, guid: 8cd92c6909a34b048be782fefcaad28d, type: 2}
   flowerVoxels:
   - {fileID: 11400000, guid: b021fdf7b9d2e4149b75dff417a537af, type: 2}
   - {fileID: 11400000, guid: b8e061533b9c6e44aadeaf49b01a296a, type: 2}
@@ -5643,12 +5644,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
-  sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
+  cactiRootVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
+  pineRootVoxel: {fileID: 11400000, guid: 8cd92c6909a34b048be782fefcaad28d, type: 2}
   woodVoxel: {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
   woodVoxel2: {fileID: 11400000, guid: 2fd22eedd7cd7594386c8a6173046ed8, type: 2}
+  woodVoxel3: {fileID: 11400000, guid: e05e94cb88b72df4d8318f0478848774, type: 2}
+  cactiVoxel: {fileID: 11400000, guid: 6d9c545bb889cf545b28ee7b2ae72643, type: 2}
   leavesVoxel: {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
   leavesVoxel2: {fileID: 11400000, guid: c873a57115f45a642a20d7fb16a6ca0d, type: 2}
-  cactiVoxel: {fileID: 11400000, guid: 6d9c545bb889cf545b28ee7b2ae72643, type: 2}
+  leavesVoxel3: {fileID: 11400000, guid: 04e395e035a6f23429196368cea17c39, type: 2}
   cactiFlowerVoxel: {fileID: 11400000, guid: 4bbe704dfaf49334da0db543b368ecda, type: 2}
 --- !u!114 &1907156672
 MonoBehaviour:

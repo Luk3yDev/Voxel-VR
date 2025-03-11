@@ -10,6 +10,7 @@ public class NoiseGenerator : MonoBehaviour
     [SerializeField] Voxel rootVoxel;
     [SerializeField] Voxel mushRootVoxel;
     [SerializeField] Voxel sandstoneVoxel;
+    [SerializeField] Voxel pineRoot;
     [SerializeField] Voxel[] flowerVoxels;
 
     [Header("Noise Parameters")]
@@ -113,6 +114,10 @@ public class NoiseGenerator : MonoBehaviour
             if (biome.generateCacti && UnityEngine.Random.Range(0, 300) == 0)
             {
                 return sandstoneVoxel;
+            }
+            if (biome.generatePineTrees && UnityEngine.Random.Range(0, 300) == 0)
+            {
+                return pineRoot;
             }
 
             return biome.surfaceVoxel;
