@@ -12,6 +12,7 @@ public class TerrainFeatureGen : MonoBehaviour
     [SerializeField] Voxel leavesVoxel;
     [SerializeField] Voxel leavesVoxel2;
     [SerializeField] Voxel cactiVoxel;
+    [SerializeField] Voxel cactiFlowerVoxel;
     MapBuilder mb;
 
     private void Awake()
@@ -102,10 +103,12 @@ public class TerrainFeatureGen : MonoBehaviour
     {
         if (pos.y < (mb.realChunkSize * mb.mapSize.y) - 16)
         {
-            for (int i = 1; i < 5; i++)
+            int i = 1;
+            for (i = 1; i < 5; i++)
             {
                 mb.voxelData[pos.x, pos.y + i, pos.z] = cactiVoxel;
             }
+            if (Random.Range(0, 2) == 0) mb.voxelData[pos.x, pos.y + i, pos.z] = cactiFlowerVoxel;
         }
     }
 }
