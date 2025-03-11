@@ -76,22 +76,6 @@ public class ManipulateTerrain : MonoBehaviour
         }
         if (gripValue < 0.5f) justSwitched = false;
 
-        if (LGripValue > 0.5f && justSwitched == false)
-        {
-            if (currentVoxel > 0)
-            {
-                currentVoxel--;
-            }
-            else
-            {
-                currentVoxel = voxels.Length;
-            }
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material = voxelHandMats[currentVoxel];
-
-            justSwitched = true;
-        }
-        if (LGripValue < 0.5f) justSwitched = false;
-
         if (buttonAction.action.triggered)
         {
             PlaceVoxel();

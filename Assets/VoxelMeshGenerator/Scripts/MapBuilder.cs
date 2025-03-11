@@ -35,7 +35,7 @@ public class MapBuilder : MonoBehaviour
 
     private void Start()
     {
-        CreateWorld();
+        //CreateWorld();
     }
 
     public void NetworkCreateWorld()
