@@ -7,7 +7,15 @@ public class Voxel : ScriptableObject
 {
     public Vector2 uvCoordinate;
     public bool isAir;
+    public bool transparent;
+    public ModelType modelType = ModelType.Cube;
     public AudioClip breakSound;
+
+    public enum ModelType
+    {
+        Cube,
+        Cross
+    }
 
     public Voxel(Vector2 uvCoord, bool air = false, AudioClip sound = null)
     {

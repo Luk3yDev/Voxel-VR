@@ -39,21 +39,36 @@ public class VoxelMeshBuilder : MonoBehaviour
                         new Vector3(1, -1, 1), new Vector3(1, -1, -1),
                     };
 
-                    int[,] Faces = new int[6, 7]{
+                    int[,] Faces = new int[10, 7]{
                         {0, 1, 2, 3, 0, 1, 0},     //top
                         {7, 6, 5, 4, 0, -1, 0},   //bottom
                         {2, 1, 5, 6, 0, 0, 1},     //right
                         {0, 3, 7, 4, 0, 0, -1},   //left
                         {3, 2, 6, 7, 1, 0, 0},    //front
-                        {1, 0, 4, 5, -1, 0, 0}    //back
+                        {1, 0, 4, 5, -1, 0, 0},    //back
+
+                        {0, 2, 6, 4, 0, 0, 0},     // +X +Z
+                        {4, 6, 2, 0, 0, 0, 0},     // -X -Z
+                        {1, 3, 7, 5, 0, 0, 0},     // -X +Z
+                        {5, 7, 3, 1, 0, 0, 0}      // +X -Z
                     };
                     if (voxelData[x, y, z] != null)
                         if (!voxelData[x, y, z].isAir)
-                            for (int o = 0; o < 6; o++)
+                            if (voxelData[x, y, z].modelType == Voxel.ModelType.Cube)
                             {
-                                if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]] != null)
-                                    if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].isAir)
-                                        AddQuad(o, vertices.Count);
+                                for (int o = 0; o < 6; o++)
+                                {
+                                    if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]] != null)
+                                        if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].transparent)
+                                            AddQuad(o, vertices.Count);
+                                }
+                            }
+                            else if (voxelData[x, y, z].modelType == Voxel.ModelType.Cross)
+                            {
+                                for (int o = 6; o < 10; o++)
+                                {
+                                    AddQuad(o, vertices.Count);
+                                }
                             }
 
                     void AddQuad(int facenum, int v)
