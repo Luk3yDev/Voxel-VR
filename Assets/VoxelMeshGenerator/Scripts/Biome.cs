@@ -7,6 +7,7 @@ public class Biome : ScriptableObject
     public Voxel dirtVoxel;
     public Voxel undergroundVoxel;
     public Voxel sandVoxel;
+    public Voxel[] plants;
 
     public float horizontalScale;
     public float verticalScale;
@@ -17,6 +18,6 @@ public class Biome : ScriptableObject
     public bool generateTrees;
     public bool generateMushrooms;
     public bool generateCacti;
-    public bool generateFlowers;
+    public bool generatePlants;
     public bool generatePineTrees;
 }

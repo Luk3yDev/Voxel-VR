@@ -16,6 +16,10 @@ MonoBehaviour:
   dirtVoxel: {fileID: 11400000, guid: e681163a16ec9604eab9e8872a6b5389, type: 2}
   undergroundVoxel: {fileID: 11400000, guid: d532b87b84394d54e94d14d0b15e183a, type: 2}
   sandVoxel: {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
+  plants:
+  - {fileID: 11400000, guid: b021fdf7b9d2e4149b75dff417a537af, type: 2}
+  - {fileID: 11400000, guid: b8e061533b9c6e44aadeaf49b01a296a, type: 2}
+  - {fileID: 11400000, guid: e0307f784db33c44fa6a4f55ebf41287, type: 2}
   horizontalScale: 30
   verticalScale: 8
   oddityScale: 15
@@ -24,4 +28,5 @@ MonoBehaviour:
   generateTrees: 1
   generateMushrooms: 1
   generateCacti: 0
-  generateFlowers: 1
+  generatePlants: 1
+  generatePineTrees: 0
