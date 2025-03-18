@@ -122,8 +122,8 @@ public class ManipulateTerrain : MonoBehaviour
             psr.material.EnableKeyword("_BASEMAP");
             psr.material.SetTexture("_BaseMap", tex);
 
-            world.SetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
-            netWorld.NetworkSetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
+            world.SetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(0));
+            netWorld.NetworkSetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(0));
         }
     }
 
