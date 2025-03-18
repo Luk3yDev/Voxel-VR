@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ManipulateTerrain : MonoBehaviour
@@ -28,6 +30,9 @@ public class ManipulateTerrain : MonoBehaviour
     [SerializeField] GameObject indicator;
     [SerializeField] GameObject currentVoxelIndicator;
     [SerializeField] GameObject blockAudioObject;
+    [SerializeField] GameObject blockParticleObject;
+    [SerializeField] Material atlasMaterial;
+    [SerializeField] Texture2D testTexture;
 
     bool justBroke;
     bool justSwitched;
@@ -95,6 +100,14 @@ public class ManipulateTerrain : MonoBehaviour
                 GameObject soundObj = Instantiate(blockAudioObject, voxelPos, Quaternion.identity);
                 soundObj.GetComponent<AudioSource>().clip = voxelTB.breakSound;
             }
+            
+            Material particleMaterial = new Material(atlasMaterial.shader);           
+            GameObject particleObj = Instantiate(blockParticleObject, voxelPos, Quaternion.identity);
+
+            ParticleSystemRenderer psr = particleObj.GetComponent<ParticleSystemRenderer>();
+            psr.material = particleMaterial;
+            psr.material.EnableKeyword("_BASEMAP");
+            psr.material.SetTexture("_BaseMap", testTexture);
 
             world.SetVoxel(voxelPos, voxels[0]);
             netWorld.NetworkSetVoxel(voxelPos, voxels[0]);

@@ -531,9 +531,9 @@ MonoBehaviour:
     m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   LGripAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
-      m_Name: 
+      m_Name: L Grip
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: c18ab235-b317-4bf7-8c9a-607b5235ab1d
@@ -541,7 +541,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
   buttonAction:
     m_UseReference: 1
     m_Action:
@@ -588,6 +589,10 @@ MonoBehaviour:
   currentVoxelIndicator: {fileID: 721492414}
   blockAudioObject: {fileID: 5149047577577985372, guid: ea4f510bff8ae1b4895b8d965ce98edb,
     type: 3}
+  blockParticleObject: {fileID: 7953749457803073334, guid: 498757cc22d34a14daf0fc7b9d66850a,
+    type: 3}
+  atlasMaterial: {fileID: 2100000, guid: d0b6e6326c7872347b561de824fc2895, type: 2}
+  testTexture: {fileID: 2800000, guid: eae2962e6818569468bcaf7b6f750137, type: 3}
 --- !u!114 &66203142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5623,9 +5628,6 @@ MonoBehaviour:
   mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
   sandstoneVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
   pineRoot: {fileID: 11400000, guid: 8cd92c6909a34b048be782fefcaad28d, type: 2}
-  flowerVoxels:
-  - {fileID: 11400000, guid: b021fdf7b9d2e4149b75dff417a537af, type: 2}
-  - {fileID: 11400000, guid: b8e061533b9c6e44aadeaf49b01a296a, type: 2}
   biomeScale: 69
 --- !u!4 &1907156670
 Transform:
