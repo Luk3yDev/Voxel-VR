@@ -22,8 +22,6 @@ public class ManipulateTerrain : MonoBehaviour
     [SerializeField] float range;
 
     [Header("Voxels")]
-    [SerializeField] Voxel[] voxels;
-    [SerializeField] Material[] voxelHandMats;
     [SerializeField] int currentVoxel;
 
     [Header("Visuals and Effects")]
@@ -66,7 +64,7 @@ public class ManipulateTerrain : MonoBehaviour
         float LGripValue = LGripAction.action.ReadValue<float>();
         if (gripValue > 0.5f && justSwitched == false)
         {
-            if (currentVoxel < voxels.Length - 1)
+            if (currentVoxel < VoxelIndexer.length - 1)
             {
                 currentVoxel++;
             }
@@ -74,7 +72,16 @@ public class ManipulateTerrain : MonoBehaviour
             {
                 currentVoxel = 0;
             }
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material = voxelHandMats[currentVoxel];
+
+            Voxel voxelTP = VoxelIndexer.IndexToVoxel(currentVoxel);
+            Texture2D tex = (Texture2D)atlasMaterial.GetTexture("_BaseMap");
+            Color[] data = tex.GetPixels(Mathf.FloorToInt(voxelTP.uvCoordinate.x) * 16, Mathf.FloorToInt(voxelTP.uvCoordinate.y) * 16, 16, 16);
+            tex = new Texture2D(16, 16);
+            tex.SetPixels(0, 0, 16, 16, data);
+            tex.Apply();
+            tex.filterMode = FilterMode.Point;
+
+            currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetTexture("_BaseMap", tex);
             
             justSwitched = true;
         }
@@ -115,8 +122,8 @@ public class ManipulateTerrain : MonoBehaviour
             psr.material.EnableKeyword("_BASEMAP");
             psr.material.SetTexture("_BaseMap", tex);
 
-            world.SetVoxel(voxelPos, voxels[0]);
-            netWorld.NetworkSetVoxel(voxelPos, voxels[0]);
+            world.SetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
+            netWorld.NetworkSetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
         }
     }
 
@@ -129,14 +136,14 @@ public class ManipulateTerrain : MonoBehaviour
             if (!Physics.CheckSphere(targetPos, 0.45f, playerLayer))
             {
                 Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
-                if (voxels[currentVoxel].breakSound != null)
+                if (VoxelIndexer.IndexToVoxel(currentVoxel).breakSound != null)
                 {
                     GameObject soundObj = Instantiate(blockAudioObject, voxelPos, Quaternion.identity);
-                    soundObj.GetComponent<AudioSource>().clip = voxels[currentVoxel].breakSound;
+                    soundObj.GetComponent<AudioSource>().clip = VoxelIndexer.IndexToVoxel(currentVoxel).breakSound;
                 }
 
-                world.SetVoxel(voxelPos, voxels[currentVoxel]);
-                netWorld.NetworkSetVoxel(voxelPos, voxels[currentVoxel]);
+                world.SetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
+                netWorld.NetworkSetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
             }
         }
     }

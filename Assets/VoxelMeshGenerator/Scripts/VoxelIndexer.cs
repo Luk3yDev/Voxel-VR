@@ -6,10 +6,12 @@ using UnityEngine;
 public static class VoxelIndexer
 {
     static Voxel[] voxels;
+    public static int length;
 
     private static void GetVoxels()
     {
         voxels = Resources.LoadAll<Voxel>("Voxels");
+        length = voxels.Length;
     }
 
     public static Voxel IndexToVoxel(int id)
