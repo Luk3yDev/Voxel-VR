@@ -32,7 +32,6 @@ public class ManipulateTerrain : MonoBehaviour
     [SerializeField] GameObject blockAudioObject;
     [SerializeField] GameObject blockParticleObject;
     [SerializeField] Material atlasMaterial;
-    [SerializeField] Texture2D testTexture;
 
     bool justBroke;
     bool justSwitched;
@@ -104,10 +103,17 @@ public class ManipulateTerrain : MonoBehaviour
             Material particleMaterial = new Material(atlasMaterial.shader);           
             GameObject particleObj = Instantiate(blockParticleObject, voxelPos, Quaternion.identity);
 
+            Texture2D tex = (Texture2D)atlasMaterial.GetTexture("_BaseMap");
+            Color[] data = tex.GetPixels(Mathf.FloorToInt(voxelTB.uvCoordinate.x) * 16, Mathf.FloorToInt(voxelTB.uvCoordinate.y) * 16, 16, 16);
+            tex = new Texture2D(16, 16);
+            tex.SetPixels(0, 0, 16, 16, data);
+            tex.Apply();
+            tex.filterMode = FilterMode.Point;
+
             ParticleSystemRenderer psr = particleObj.GetComponent<ParticleSystemRenderer>();
             psr.material = particleMaterial;
             psr.material.EnableKeyword("_BASEMAP");
-            psr.material.SetTexture("_BaseMap", testTexture);
+            psr.material.SetTexture("_BaseMap", tex);
 
             world.SetVoxel(voxelPos, voxels[0]);
             netWorld.NetworkSetVoxel(voxelPos, voxels[0]);
