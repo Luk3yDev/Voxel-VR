@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class ManipulateTerrain : MonoBehaviour
 {
@@ -37,6 +32,8 @@ public class ManipulateTerrain : MonoBehaviour
     private void Awake()
     {
         netWorld = world.GetComponent<NetworkWorld>();
+
+        if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
     }
 
     void Update()
@@ -82,7 +79,10 @@ public class ManipulateTerrain : MonoBehaviour
             tex.filterMode = FilterMode.Point;
 
             currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetTexture("_BaseMap", tex);
-            
+            currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
+
+            if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
+
             justSwitched = true;
         }
         if (gripValue < 0.5f) justSwitched = false;
