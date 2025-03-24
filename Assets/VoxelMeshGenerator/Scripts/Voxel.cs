@@ -10,6 +10,7 @@ public class Voxel : ScriptableObject
     public bool transparent;
     public ModelType modelType = ModelType.Cube;
     public AudioClip breakSound;
+    public bool collide = true;
 
     public enum ModelType
     {

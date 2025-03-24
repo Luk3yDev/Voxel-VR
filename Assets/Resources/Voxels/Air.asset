@@ -17,4 +17,4 @@ MonoBehaviour:
   transparent: 1
   modelType: 0
   breakSound: {fileID: 0}
-  canPlace: 0
+  collide: 0

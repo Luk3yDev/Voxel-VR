@@ -8,6 +8,18 @@ public class VoxelMeshBuilder : MonoBehaviour
     MeshFilter meshFilter;
     MeshCollider meshCollider;
 
+    public struct MeshData
+    {
+        public Mesh visualMesh;
+        public Mesh colliderMesh;
+
+        public MeshData(Mesh visualMesh, Mesh colliderMesh)
+        {
+            this.visualMesh = visualMesh;
+            this.colliderMesh = colliderMesh;
+        }
+    }
+
     private void Awake()
     {
         meshFilter = GetComponent<MeshFilter>();
@@ -16,17 +28,21 @@ public class VoxelMeshBuilder : MonoBehaviour
 
     public void BuildChunk(Voxel[,,] voxelData)
     {
-        Mesh mesh = GenerateMesh(voxelData);
-        meshFilter.mesh = mesh;
-        meshCollider.sharedMesh = mesh;
+        MeshData meshData = GenerateMesh(voxelData);
+        meshFilter.mesh = meshData.visualMesh;
+        meshCollider.sharedMesh = meshData.colliderMesh;
     }
 
-    Mesh GenerateMesh(Voxel[,,] voxelData)
+    MeshData GenerateMesh(Voxel[,,] voxelData)
     {
         Mesh mesh = new Mesh();
+        Mesh colliderMesh = new Mesh();
         List<Vector3> vertices = new List<Vector3>();
         List<Vector2> uvs = new List<Vector2>();
         List<int> triangles = new List<int>();
+
+        List<Vector3> colliderVertices = new List<Vector3>();
+        List<int> colliderTriangles = new List<int>();
 
         for (int x = 1; x < voxelData.GetLength(0) - 1; x++)
             for (int y = 1; y < voxelData.GetLength(1) - 1; y++)
@@ -59,23 +75,29 @@ public class VoxelMeshBuilder : MonoBehaviour
                                 for (int o = 0; o < 6; o++)
                                 {
                                     if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]] != null)
-                                        if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].transparent)
-                                            AddQuad(o, vertices.Count);
+                                        if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].transparent)                                          
+                                            AddQuad(o, vertices.Count, voxelData[x,y,z].collide, colliderVertices.Count);
                                 }
                             }
                             else if (voxelData[x, y, z].modelType == Voxel.ModelType.Cross)
                             {
                                 for (int o = 6; o < 10; o++)
                                 {
-                                    AddQuad(o, vertices.Count);
+                                    AddQuad(o, vertices.Count, voxelData[x, y, z].collide, colliderVertices.Count);
                                 }
                             }
 
-                    void AddQuad(int facenum, int v)
+                    void AddQuad(int facenum, int v, bool collide, int collideV)
                     {
                         // Add Mesh
                         for (int i = 0; i < 4; i++) vertices.Add(new Vector3(x, y, z) + VertPos[Faces[facenum, i]] / 2f);
                         triangles.AddRange(new List<int>() { v, v + 1, v + 2, v, v + 2, v + 3 });
+
+                        if (collide)
+                        {
+                            for (int i = 0; i < 4; i++) colliderVertices.Add(new Vector3(x, y, z) + VertPos[Faces[facenum, i]] / 2f);
+                            colliderTriangles.AddRange(new List<int>() { collideV, collideV + 1, collideV + 2, collideV, collideV + 2, collideV + 3 });
+                        }
 
                         // Add uvs
                         Vector2 bottomleft = voxelData[x, y, z].uvCoordinate / atlasSize;
@@ -90,6 +112,14 @@ public class VoxelMeshBuilder : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
         mesh.OptimizeReorderVertexBuffer();
-        return mesh;
+
+        colliderMesh.vertices = colliderVertices.ToArray();
+        colliderMesh.triangles = colliderTriangles.ToArray();
+        colliderMesh.RecalculateNormals();
+        colliderMesh.RecalculateBounds();
+        colliderMesh.OptimizeReorderVertexBuffer();
+
+        MeshData meshData = new MeshData(mesh, colliderMesh);
+        return meshData;
     }
 }

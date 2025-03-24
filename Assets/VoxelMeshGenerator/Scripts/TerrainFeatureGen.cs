@@ -62,11 +62,7 @@ public class TerrainFeatureGen : MonoBehaviour
     void FeatureTree(Vector3Int pos)
     {
         if (pos.y < (mb.realChunkSize * mb.mapSize.y) - 16)
-        {
-            for (int i = 1; i < 5; i++)
-            {
-                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel;
-            }
+        {          
             for (int x = -1; x < 2; x++)
             {
                 for (int y = 5; y < 8; y++)
@@ -85,6 +81,10 @@ public class TerrainFeatureGen : MonoBehaviour
                         }
                     }
                 }
+            }
+            for (int i = 1; i < 6; i++)
+            {
+                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel;
             }
         }
     }
@@ -132,8 +132,6 @@ public class TerrainFeatureGen : MonoBehaviour
         {
             for (int i = 1; i < 8; i++)
             {
-                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel3;
-
                 if (i == 3)
                 {
                     for (int x = -2; x < 3; x++)
@@ -182,6 +180,8 @@ public class TerrainFeatureGen : MonoBehaviour
                         }
                     }
                 }
+
+                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel3;
             }
         }
     }

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4687bb71dfef7154687d7f058a4f47ed, type: 3}
   m_Name: Wood2
   m_EditorClassIdentifier: 
-  uvCoordinate: {x: 0, y: 2}
+  uvCoordinate: {x: 2, y: 2}
   isAir: 0
+  transparent: 0
+  modelType: 0
   breakSound: {fileID: 8300000, guid: b8e75109092541942b666fc7472d1a2d, type: 3}
+  collide: 1
