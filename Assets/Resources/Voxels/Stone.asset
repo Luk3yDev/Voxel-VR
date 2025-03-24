@@ -16,5 +16,5 @@ MonoBehaviour:
   isAir: 0
   transparent: 0
   modelType: 0
-  breakSound: {fileID: 8300000, guid: 788c48616e06b6a4bb3caef522697e85, type: 3}
+  breakSound: {fileID: 8300000, guid: ecb8372da4dc9524a9c004e10b7fcfc3, type: 3}
   collide: 1
