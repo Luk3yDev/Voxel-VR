@@ -2175,6 +2175,7 @@ MonoBehaviour:
   tracks:
   - {fileID: 8300000, guid: 5fd3e2bace775b348b7c8032bba5c6ce, type: 3}
   - {fileID: 8300000, guid: 883dd0c85a4e29d4f803ed7a5c56094a, type: 3}
+  - {fileID: 8300000, guid: e53f623105000374695d268b490f41ef, type: 3}
 --- !u!1 &1026234815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3739,7 +3740,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
