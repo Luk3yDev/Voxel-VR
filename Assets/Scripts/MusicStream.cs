@@ -20,17 +20,14 @@ public class MusicStream : MonoBehaviour
         if (timeUntilNextSong <= 0)
         {
             int newTrack = Random.Range(0, tracks.Length);
-            if (newTrack == lastPlayedTrack)
+            while (newTrack == lastPlayedTrack)
             {
-                // Reroll for a different track
-                QueueNextTrack(0);
-            }
-            else
-            {
-                AudioClip track = tracks[newTrack];
-                musicSource.PlayOneShot(track, 0.6f);
-                QueueNextTrack(track.length);
-            }
+                newTrack = Random.Range(0, tracks.Length);
+            }           
+            AudioClip track = tracks[newTrack];
+            musicSource.PlayOneShot(track, 0.6f);
+            lastPlayedTrack = newTrack;
+            QueueNextTrack(track.length);           
         }
     }
 
