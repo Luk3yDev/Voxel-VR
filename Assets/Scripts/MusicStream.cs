@@ -11,8 +11,7 @@ public class MusicStream : MonoBehaviour
 
     void Start()
     {
-        // Play a song on start with zero delay
-        QueueNextTrack(0);
+        QueueNextTrack(-60);
     }
 
     void Update()
@@ -26,10 +25,12 @@ public class MusicStream : MonoBehaviour
                 // Reroll for a different track
                 QueueNextTrack(0);
             }
-
-            AudioClip track = tracks[newTrack];
-            musicSource.PlayOneShot(track, 0.7f);
-            QueueNextTrack(track.length);
+            else
+            {
+                AudioClip track = tracks[newTrack];
+                musicSource.PlayOneShot(track, 0.6f);
+                QueueNextTrack(track.length);
+            }
         }
     }
 

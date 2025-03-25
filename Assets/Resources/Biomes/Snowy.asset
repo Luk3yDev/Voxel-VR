@@ -18,7 +18,6 @@ MonoBehaviour:
   sandVoxel: {fileID: 11400000, guid: b4b6c885ae56b474aa5fbd1aff7a7c12, type: 2}
   plants:
   - {fileID: 11400000, guid: b018fcb9be0ea514ab949c0177052646, type: 2}
-  - {fileID: 11400000, guid: e0307f784db33c44fa6a4f55ebf41287, type: 2}
   horizontalScale: 30
   verticalScale: 8
   oddityScale: 20
