@@ -31,17 +31,18 @@ public class NoiseGenerator : MonoBehaviour
         UnityEngine.Random.InitState(code);
         seed = UnityEngine.Random.Range(-1000, 1000);
         odditySeed = UnityEngine.Random.Range(-1000, 1000);
-    }
 
-    private void Awake()
-    {       
-        mb = GetComponent<MapBuilder>();
         biomes = Resources.LoadAll<Biome>("Biomes");
         biomeSeeds = new float[biomes.Length];
         for (int b = 0; b < biomes.Length; b++)
         {
             biomeSeeds[b] = UnityEngine.Random.Range(-1000, 1000);
         }
+    }
+
+    private void Awake()
+    {       
+        mb = GetComponent<MapBuilder>();
     }
 
     public Voxel GetVoxelAtPos(Vector3Int pos)
