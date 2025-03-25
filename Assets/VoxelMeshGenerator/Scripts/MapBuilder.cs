@@ -18,6 +18,7 @@ public class MapBuilder : MonoBehaviour
     TerrainFeatureGen featureGen;
     NetworkWorld netWorld;
     [SerializeField] GameObject spawnRoom;
+    [SerializeField] GameObject loading;
     [SerializeField] int renderDistance;
     float squareRenderDistance;
 
@@ -51,6 +52,8 @@ public class MapBuilder : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
         */
+
+        loading.SetActive(true);
 
         GenerateMap();
         BuildMap();
