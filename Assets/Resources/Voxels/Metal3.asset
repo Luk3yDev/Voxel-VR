@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4687bb71dfef7154687d7f058a4f47ed, type: 3}
   m_Name: Metal3
   m_EditorClassIdentifier: 
-  uvCoordinate: {x: 5, y: 2}
+  uvCoordinate: {x: 2, y: 5}
   isAir: 0
   transparent: 0
   modelType: 0
