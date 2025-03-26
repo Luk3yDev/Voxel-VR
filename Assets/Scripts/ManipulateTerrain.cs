@@ -42,6 +42,13 @@ public class ManipulateTerrain : MonoBehaviour
         {
             Vector3 targetPos = hitInfo.point - (hitInfo.normal * 0.5f);
             Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
+
+            Vector3 exTargetPos = targetPos + (hitInfo.normal);
+            if (world.voxelData[(int)exTargetPos.x, (int)exTargetPos.y, (int)exTargetPos.z].modelType == Voxel.ModelType.Cross)
+            {
+                voxelPos = new Vector3Int(Mathf.RoundToInt(exTargetPos.x), Mathf.RoundToInt(exTargetPos.y), Mathf.RoundToInt(exTargetPos.z));
+            }
+
             indicator.SetActive(true);
             indicator.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
             indicator.transform.position = voxelPos;
@@ -99,6 +106,12 @@ public class ManipulateTerrain : MonoBehaviour
         {
             Vector3 targetPos = hitInfo.point - (hitInfo.normal * 0.5f);
             Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
+
+            Vector3 exTargetPos = targetPos + (hitInfo.normal);
+            if (world.voxelData[(int)exTargetPos.x, (int)exTargetPos.y, (int)exTargetPos.z].modelType == Voxel.ModelType.Cross)
+            {
+                voxelPos = new Vector3Int(Mathf.RoundToInt(exTargetPos.x), Mathf.RoundToInt(exTargetPos.y), Mathf.RoundToInt(exTargetPos.z));
+            }
 
             Voxel voxelTB = world.GetVoxel(voxelPos);
             if (voxelTB.breakSound != null)

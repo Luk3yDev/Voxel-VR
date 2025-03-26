@@ -3779,7 +3779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1377445690}
   tracks:
-  - {fileID: 8300000, guid: 5fd3e2bace775b348b7c8032bba5c6ce, type: 3}
+  - {fileID: 8300000, guid: 2049a5e6deb0b314b979552e38eabbe7, type: 3}
   - {fileID: 8300000, guid: 883dd0c85a4e29d4f803ed7a5c56094a, type: 3}
   - {fileID: 8300000, guid: e53f623105000374695d268b490f41ef, type: 3}
 --- !u!1 &1026234815
@@ -4999,6 +4999,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1907156669}
+        m_TargetAssemblyTypeName: NoiseGenerator, Assembly-CSharp
+        m_MethodName: GenerateSeed
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '!singeplayer!'
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 533976467}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -8860,12 +8872,12 @@ MonoBehaviour:
   cactiRootVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
   pineRootVoxel: {fileID: 11400000, guid: 8cd92c6909a34b048be782fefcaad28d, type: 2}
   woodVoxel: {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
-  woodVoxel2: {fileID: 11400000, guid: be960f0214572cc4c974c8e8b66915e3, type: 2}
-  woodVoxel3: {fileID: 11400000, guid: 2fd22eedd7cd7594386c8a6173046ed8, type: 2}
+  woodVoxel2: {fileID: 11400000, guid: e05e94cb88b72df4d8318f0478848774, type: 2}
   cactiVoxel: {fileID: 11400000, guid: 6d9c545bb889cf545b28ee7b2ae72643, type: 2}
   leavesVoxel: {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
-  leavesVoxel2: {fileID: 11400000, guid: 312be722a5e40334c933cf9485a894bb, type: 2}
-  leavesVoxel3: {fileID: 11400000, guid: c873a57115f45a642a20d7fb16a6ca0d, type: 2}
+  leavesVoxel2: {fileID: 11400000, guid: 04e395e035a6f23429196368cea17c39, type: 2}
+  mushroomStemVoxel: {fileID: 11400000, guid: be960f0214572cc4c974c8e8b66915e3, type: 2}
+  mushroomVoxel: {fileID: 11400000, guid: 312be722a5e40334c933cf9485a894bb, type: 2}
   cactiFlowerVoxel: {fileID: 11400000, guid: 4bbe704dfaf49334da0db543b368ecda, type: 2}
 --- !u!114 &1907156672
 MonoBehaviour:

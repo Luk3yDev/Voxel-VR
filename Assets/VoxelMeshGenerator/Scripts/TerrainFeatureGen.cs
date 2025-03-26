@@ -13,13 +13,15 @@ public class TerrainFeatureGen : MonoBehaviour
     [Header("Woods")]
     [SerializeField] Voxel woodVoxel;
     [SerializeField] Voxel woodVoxel2;
-    [SerializeField] Voxel woodVoxel3;
     [SerializeField] Voxel cactiVoxel;
 
     [Header("Leaves")]
     [SerializeField] Voxel leavesVoxel;
     [SerializeField] Voxel leavesVoxel2;
-    [SerializeField] Voxel leavesVoxel3;  
+
+    [Header("Mushroom")]
+    [SerializeField] Voxel mushroomStemVoxel;
+    [SerializeField] Voxel mushroomVoxel; 
 
     [Header("Extra")]
     [SerializeField] Voxel cactiFlowerVoxel;
@@ -95,7 +97,7 @@ public class TerrainFeatureGen : MonoBehaviour
         {
             for (int i = 1; i < 5; i++)
             {
-                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel2;
+                mb.voxelData[pos.x, pos.y + i, pos.z] = mushroomStemVoxel;
             }
             for (int x = -2; x < 3; x++)
             {
@@ -105,7 +107,7 @@ public class TerrainFeatureGen : MonoBehaviour
                     {                        
                         if (pos.z + z >= 1 && pos.z + z < mb.voxelData.GetLength(2) - 1)
                         {
-                            mb.voxelData[pos.x + x, pos.y + 5, pos.z + z] = leavesVoxel2;
+                            mb.voxelData[pos.x + x, pos.y + 5, pos.z + z] = mushroomVoxel;
                         }
                     }
                 }
@@ -142,7 +144,7 @@ public class TerrainFeatureGen : MonoBehaviour
                             {
                                 if (pos.z + z >= 1 && pos.z + z < mb.voxelData.GetLength(2) - 1)
                                 {
-                                    mb.voxelData[pos.x + x, pos.y + i, pos.z + z] = leavesVoxel3;
+                                    mb.voxelData[pos.x + x, pos.y + i, pos.z + z] = leavesVoxel2;
                                 }
                             }
                         }
@@ -158,7 +160,7 @@ public class TerrainFeatureGen : MonoBehaviour
                             {
                                 if (pos.z + z >= 1 && pos.z + z < mb.voxelData.GetLength(2) - 1)
                                 {
-                                    mb.voxelData[pos.x + x, pos.y + i, pos.z + z] = leavesVoxel3;
+                                    mb.voxelData[pos.x + x, pos.y + i, pos.z + z] = leavesVoxel2;
                                 }
                             }
                         }
@@ -174,14 +176,14 @@ public class TerrainFeatureGen : MonoBehaviour
                             {
                                 if (pos.z + z >= 1 && pos.z + z < mb.voxelData.GetLength(2) - 1)
                                 {
-                                    mb.voxelData[pos.x + x, pos.y + i, pos.z + z] = leavesVoxel3;
+                                    mb.voxelData[pos.x + x, pos.y + i, pos.z + z] = leavesVoxel2;
                                 }
                             }
                         }
                     }
                 }
 
-                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel3;
+                mb.voxelData[pos.x, pos.y + i, pos.z] = woodVoxel2;
             }
         }
     }
