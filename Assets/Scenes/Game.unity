@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SINGEPLAYER
+  m_text: SINGLEPLAYER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 96b4d05b9a2bf7d4bba4d6be18d74971, type: 2}
   m_sharedMaterial: {fileID: 6512387019248466816, guid: 96b4d05b9a2bf7d4bba4d6be18d74971,
@@ -2707,7 +2707,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 811868549}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1261262273}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &811868549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4917,7 +4929,7 @@ GameObject:
   - component: {fileID: 1261262276}
   - component: {fileID: 1261262275}
   m_Layer: 5
-  m_Name: Singeplayer
+  m_Name: Singleplayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6437,7 +6449,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1501447780}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1261262273}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1501447780
 MonoBehaviour:
   m_ObjectHideFlags: 0
