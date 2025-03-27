@@ -36,8 +36,7 @@ public class NoiseGenerator : MonoBehaviour
         UnityEngine.Random.InitState(code);
         seed = UnityEngine.Random.Range(-1000, 1000);
         odditySeed = UnityEngine.Random.Range(-1000, 1000);
-
-        biomes = Resources.LoadAll<Biome>("Biomes");
+        
         biomeSeeds = new float[biomes.Length];
         for (int b = 0; b < biomes.Length; b++)
         {
@@ -46,7 +45,8 @@ public class NoiseGenerator : MonoBehaviour
     }
 
     private void Awake()
-    {       
+    {
+        biomes = Resources.LoadAll<Biome>("Biomes");
         mb = GetComponent<MapBuilder>();
     }
 

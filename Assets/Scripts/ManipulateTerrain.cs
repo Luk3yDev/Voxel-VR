@@ -86,6 +86,7 @@ public class ManipulateTerrain : MonoBehaviour
             tex.filterMode = FilterMode.Point;
 
             currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetTexture("_BaseMap", tex);
+            currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetFloat("_Smoothness", 0.0f);
             currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
 
             if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);

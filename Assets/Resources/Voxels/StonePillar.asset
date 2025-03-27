@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4687bb71dfef7154687d7f058a4f47ed, type: 3}
-  m_Name: Cobblestone
+  m_Name: StonePillar
   m_EditorClassIdentifier: 
-  uvCoordinate: {x: 4, y: 0}
+  uvCoordinate: {x: 7, y: 0}
   isAir: 0
   transparent: 0
   modelType: 0
