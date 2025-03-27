@@ -11,7 +11,7 @@ public class MusicStream : MonoBehaviour
 
     void Start()
     {
-        QueueNextTrack(-60);
+        QueueNextTrack(-999);
     }
 
     void Update()
@@ -27,12 +27,12 @@ public class MusicStream : MonoBehaviour
             AudioClip track = tracks[newTrack];
             musicSource.PlayOneShot(track, 0.6f);
             lastPlayedTrack = newTrack;
-            QueueNextTrack(track.length);           
+            QueueNextTrack(track.length);
         }
     }
 
     void QueueNextTrack(float offset)
     {
-        timeUntilNextSong = Random.Range(30, 60) + offset;
+        timeUntilNextSong = Random.Range(50, 100) + offset; // choose random delay in seconds
     }
 }
