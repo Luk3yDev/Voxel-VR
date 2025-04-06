@@ -36,6 +36,26 @@ public class ManipulateTerrain : MonoBehaviour
         if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
     }
 
+    private void RegenerateHandVoxelMaterial(Voxel voxelTP)
+    {
+        Texture2D tex = (Texture2D)atlasMaterial.GetTexture("_BaseMap");
+        Color[] data = tex.GetPixels(Mathf.FloorToInt(voxelTP.uvCoordinate.x) * 16, Mathf.FloorToInt(voxelTP.uvCoordinate.y) * 16, 16, 16);
+        tex = new Texture2D(16, 16);
+        tex.SetPixels(0, 0, 16, 16, data);
+        tex.Apply();
+        tex.filterMode = FilterMode.Point;
+
+        Material mat = currentVoxelIndicator.GetComponent<MeshRenderer>().material;
+        mat.SetTexture("_BaseMap", tex);
+        mat.SetFloat("_Smoothness", 0.0f);
+        mat.DisableKeyword("_Emission");
+        mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+        mat.SetColor("_EmissionColor", Color.black);
+        mat.color = new Color(1, 1, 1, 1);
+
+        if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
+    }
+
     void Update()
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, range, terrainLayer))
@@ -78,18 +98,7 @@ public class ManipulateTerrain : MonoBehaviour
             }
 
             Voxel voxelTP = VoxelIndexer.IndexToVoxel(currentVoxel);
-            Texture2D tex = (Texture2D)atlasMaterial.GetTexture("_BaseMap");
-            Color[] data = tex.GetPixels(Mathf.FloorToInt(voxelTP.uvCoordinate.x) * 16, Mathf.FloorToInt(voxelTP.uvCoordinate.y) * 16, 16, 16);
-            tex = new Texture2D(16, 16);
-            tex.SetPixels(0, 0, 16, 16, data);
-            tex.Apply();
-            tex.filterMode = FilterMode.Point;
-
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetTexture("_BaseMap", tex);
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetFloat("_Smoothness", 0.0f);
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
-
-            if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
+            RegenerateHandVoxelMaterial(voxelTP);
 
             justSwitched = true;
         }
@@ -105,18 +114,7 @@ public class ManipulateTerrain : MonoBehaviour
             }
 
             Voxel voxelTP = VoxelIndexer.IndexToVoxel(currentVoxel);
-            Texture2D tex = (Texture2D)atlasMaterial.GetTexture("_BaseMap");
-            Color[] data = tex.GetPixels(Mathf.FloorToInt(voxelTP.uvCoordinate.x) * 16, Mathf.FloorToInt(voxelTP.uvCoordinate.y) * 16, 16, 16);
-            tex = new Texture2D(16, 16);
-            tex.SetPixels(0, 0, 16, 16, data);
-            tex.Apply();
-            tex.filterMode = FilterMode.Point;
-
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetTexture("_BaseMap", tex);
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material.SetFloat("_Smoothness", 0.0f);
-            currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 1);
-
-            if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
+            RegenerateHandVoxelMaterial(voxelTP);        
 
             justSwitched = true;
         }
