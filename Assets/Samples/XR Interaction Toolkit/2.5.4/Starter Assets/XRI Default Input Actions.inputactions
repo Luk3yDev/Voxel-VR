@@ -1764,6 +1764,17 @@
                     "action": "Button",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f09d664c-11fa-4d61-a1dd-66e42336a636",
+                    "path": "<ViveController>{RightHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
