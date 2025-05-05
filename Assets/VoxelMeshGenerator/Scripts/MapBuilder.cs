@@ -53,18 +53,16 @@ public class MapBuilder : MonoBehaviour
         }
         */
 
-        loading.SetActive(true);
-
         GenerateMap();
-        BuildMap();
-
-        spawnRoom.SetActive(false);
+        BuildMap();     
 
         VoxelMeshBuilder[] collection = builtChunks.Values.ToArray();
         foreach (VoxelMeshBuilder chunk in collection)
         {
             chunkObjects.Add(chunk.gameObject);
         }
+
+        spawnRoom.SetActive(false);
     }
 
     private void Update()
