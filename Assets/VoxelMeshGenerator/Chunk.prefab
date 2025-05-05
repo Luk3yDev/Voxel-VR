@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7119105300640238961}
   - component: {fileID: 1504008672921620716}
   - component: {fileID: 804005824487727404}
+  - component: {fileID: 4119956868777518369}
   m_Layer: 8
   m_Name: Chunk
   m_TagString: Untagged
@@ -73,6 +74,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -120,3 +124,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &4119956868777518369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919496275917006185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96e7566b6a9e90479fb3ec8c8ec2599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickSpeed: 0.5
+  chunkPos: {x: 0, y: 0, z: 0}
+  water: {fileID: 11400000, guid: 6c7a8c17ebf3bd949878042ab9944cfd, type: 2}
+  air: {fileID: 11400000, guid: 323be2defe8092b41bf1d8c6e049a198, type: 2}
