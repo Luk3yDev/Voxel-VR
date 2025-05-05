@@ -188,6 +188,26 @@ MonoBehaviour:
   Keys: 01000000
   Values:
   - {fileID: 3698447479711031017}
+--- !u!114 &2529258393544350501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b213d3e3c7f3109449eb46a4c8ee42f0, type: 3}
+  m_Name: XrPerformanceSettingsFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: XR Performance Settings
+  version: 1.0.0
+  featureIdInternal: com.unity.openxr.feature.extension.performance_settings
+  openxrExtensionStrings: XR_EXT_performance_settings
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &2665891746060446976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,11 +244,13 @@ MonoBehaviour:
   - {fileID: 8554971739016111052}
   - {fileID: -5652838001134339890}
   - {fileID: -318391120934145875}
+  - {fileID: 3715581757866402813}
   - {fileID: -341657920684269002}
   - {fileID: -7655281887076429960}
   - {fileID: -1968785050246912615}
   - {fileID: 8704591711795040624}
   - {fileID: -933153720405001372}
+  - {fileID: 7935431609322741448}
   - {fileID: 8355009147870736636}
   - {fileID: 7635713675159526699}
   - {fileID: 2665891746060446976}
@@ -237,10 +259,15 @@ MonoBehaviour:
   - {fileID: -4640983548432990567}
   - {fileID: 3713574888090127535}
   - {fileID: -8225508111463911569}
+  - {fileID: 2529258393544350501}
   m_renderMode: 0
+  m_autoColorSubmissionMode: 1
+  m_colorSubmissionModes:
+    m_List: 00000000
   m_depthSubmissionMode: 0
   m_optimizeBufferDiscards: 0
   m_symmetricProjection: 0
+  m_foveatedRenderingApi: 0
 --- !u!114 &3713574888090127535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +290,27 @@ MonoBehaviour:
   required: 0
   cacheSize: 1048576
   perThreadCacheSize: 51200
+--- !u!114 &3715581757866402813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a75d1f5ff90154ea2a8e58222a1f59, type: 3}
+  m_Name: FoveatedRenderingFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Foveated Rendering
+  version: 1
+  featureIdInternal: com.unity.openxr.feature.foveatedrendering
+  openxrExtensionStrings: XR_UNITY_foveation XR_FB_foveation XR_FB_foveation_configuration
+    XR_FB_swapchain_update_state XR_FB_foveation_vulkan
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &4268548068599959497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +369,26 @@ MonoBehaviour:
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.handtracking
   openxrExtensionStrings: XR_MSFT_hand_interaction
+  company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &7935431609322741448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7365b139f7aec43b23d26b7a48b5a6, type: 3}
+  m_Name: MetaQuestTouchPlusControllerProfile Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Meta Quest Touch Plus Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metaquestplus
+  openxrExtensionStrings: XR_META_touch_controller_plus
   company: Unity
   priority: 0
   required: 0
