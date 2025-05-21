@@ -60,7 +60,7 @@ public class NetworkConnect : MonoBehaviour
         }
         nahBro2 = true;
 
-        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
+        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(7);
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
         joinCodeText.text = $"Code: {joinCode}";

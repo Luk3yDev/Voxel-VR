@@ -68,7 +68,7 @@ public class MapBuilder : MonoBehaviour
     private void Update()
     {
         squareRenderDistance = renderDistance * renderDistance;
-        LoadUnloadChunks();
+        //LoadUnloadChunks();
     }
 
     private void LoadUnloadChunks()
