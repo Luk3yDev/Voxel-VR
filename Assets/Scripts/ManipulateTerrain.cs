@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,7 +22,7 @@ public class ManipulateTerrain : MonoBehaviour
 
     [Header("Visuals and Effects")]
     [SerializeField] GameObject indicator;
-    [SerializeField] GameObject currentVoxelIndicator;
+    [SerializeField] VoxelMeshBuilder currentVoxelIndicator;
     [SerializeField] GameObject blockAudioObject;
     [SerializeField] GameObject blockParticleObject;
     [SerializeField] Material atlasMaterial;
@@ -32,12 +33,12 @@ public class ManipulateTerrain : MonoBehaviour
     private void Awake()
     {
         netWorld = world.GetComponent<NetworkWorld>();
-
-        if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
+        RegenerateHandVoxelMaterial(VoxelIndexer.IndexToVoxel(currentVoxel));
     }
 
     private void RegenerateHandVoxelMaterial(Voxel voxelTP)
     {
+        /*
         Texture2D tex = (Texture2D)atlasMaterial.GetTexture("_BaseMap");
         Color[] data = tex.GetPixels(Mathf.FloorToInt(voxelTP.uvCoordinate.x) * 16, Mathf.FloorToInt(voxelTP.uvCoordinate.y) * 16, 16, 16);
         tex = new Texture2D(16, 16);
@@ -54,6 +55,22 @@ public class ManipulateTerrain : MonoBehaviour
         mat.color = new Color(1, 1, 1, 1);
 
         if (currentVoxel == 0) currentVoxelIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0, 0);
+        */
+
+        Voxel air = VoxelIndexer.IndexToVoxel(0);
+        Voxel[,,] indicatorVoxelMeshVoxels = new Voxel[3,3,3];
+        for (int x = 0; x < indicatorVoxelMeshVoxels.GetLength(0); x++)
+        {
+            for (int y = 0; y < indicatorVoxelMeshVoxels.GetLength(1); y++)
+            {
+                for (int z = 0; z < indicatorVoxelMeshVoxels.GetLength(2); z++)
+                {
+                    indicatorVoxelMeshVoxels[x, y, z] = air;
+                }
+            }
+        }
+        indicatorVoxelMeshVoxels[1, 1, 1] = voxelTP;
+        currentVoxelIndicator.BuildChunk(indicatorVoxelMeshVoxels);
     }
 
     void Update()
