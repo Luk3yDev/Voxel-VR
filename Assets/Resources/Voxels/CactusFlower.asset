@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uvCoordinate: {x: 2, y: 3}
   isAir: 0
-  transparent: 1
   modelType: 1
+  renderType: 1
   breakSound: {fileID: 8300000, guid: 8ccf976e493b2654db2a54c8b5286460, type: 3}
   collide: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VoxelMeshBuilder : MonoBehaviour
@@ -55,6 +56,13 @@ public class VoxelMeshBuilder : MonoBehaviour
                         new Vector3(1, -1, 1), new Vector3(1, -1, -1),
                     };
 
+                    Vector3[] SlabVertPos = new Vector3[8]{
+                        new Vector3(-1, 0, -1), new Vector3(-1, 0, 1),
+                        new Vector3(1, 0, 1), new Vector3(1, 0, -1),
+                        new Vector3(-1, -1, -1), new Vector3(-1, -1, 1),
+                        new Vector3(1, -1, 1), new Vector3(1, -1, -1),
+                    };
+
                     int[,] Faces = new int[10, 7]{
                         {0, 1, 2, 3, 0, 1, 0},     //top
                         {7, 6, 5, 4, 0, -1, 0},   //bottom
@@ -74,35 +82,57 @@ public class VoxelMeshBuilder : MonoBehaviour
                             {
                                 for (int o = 0; o < 6; o++)
                                 {
-                                    if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]] != null)
-                                        if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].transparent)                                          
-                                            AddQuad(o, vertices.Count, voxelData[x,y,z].collide, colliderVertices.Count);
+                                    Voxel oVoxel = voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]];
+                                    if (oVoxel != null)
+                                        if (oVoxel.renderType != Voxel.RenderType.Opaque)
+                                            if (oVoxel != voxelData[x, y, z])
+                                                AddQuad(o, vertices.Count, voxelData[x,y,z].collide, colliderVertices.Count, false);
+                                            else if (voxelData[x,y,z].renderType == Voxel.RenderType.TransparentThick)
+                                                AddQuad(o, vertices.Count, voxelData[x, y, z].collide, colliderVertices.Count, false);
                                 }
                             }
                             else if (voxelData[x, y, z].modelType == Voxel.ModelType.Cross)
                             {
                                 for (int o = 6; o < 10; o++)
                                 {
-                                    AddQuad(o, vertices.Count, voxelData[x, y, z].collide, colliderVertices.Count);
+                                    AddQuad(o, vertices.Count, voxelData[x, y, z].collide, colliderVertices.Count, false);
+                                }
+                            }
+                            else if (voxelData[x, y, z].modelType == Voxel.ModelType.Slab)
+                            {
+                                for (int o = 0; o < 6; o++)
+                                {
+                                    if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]] != null)
+                                        if (voxelData[x + Faces[o, 4], y + Faces[o, 5], z + Faces[o, 6]].modelType != Voxel.ModelType.Slab || o == 1 || o == 0)
+                                            AddQuad(o, vertices.Count, voxelData[x, y, z].collide, colliderVertices.Count, true);
                                 }
                             }
 
-                    void AddQuad(int facenum, int v, bool collide, int collideV)
+                    void AddQuad(int facenum, int v, bool collide, int collideV, bool slab)
                     {
                         // Add Mesh
-                        for (int i = 0; i < 4; i++) vertices.Add(new Vector3(x, y, z) + VertPos[Faces[facenum, i]] / 2f);
+                        if (slab)
+                        {
+                            for (int i = 0; i < 4; i++) vertices.Add(new Vector3(x, y, z) + SlabVertPos[Faces[facenum, i]] / 2f);
+                        }
+                        else for (int i = 0; i < 4; i++) vertices.Add(new Vector3(x, y, z) + VertPos[Faces[facenum, i]] / 2f);
                         triangles.AddRange(new List<int>() { v, v + 1, v + 2, v, v + 2, v + 3 });
 
                         if (collide)
                         {
-                            for (int i = 0; i < 4; i++) colliderVertices.Add(new Vector3(x, y, z) + VertPos[Faces[facenum, i]] / 2f);
+                            if (slab) for (int i = 0; i < 4; i++) colliderVertices.Add(new Vector3(x, y, z) + SlabVertPos[Faces[facenum, i]] / 2f);
+                            else for (int i = 0; i < 4; i++) colliderVertices.Add(new Vector3(x, y, z) + VertPos[Faces[facenum, i]] / 2f);
                             colliderTriangles.AddRange(new List<int>() { collideV, collideV + 1, collideV + 2, collideV, collideV + 2, collideV + 3 });
                         }
 
                         // Add uvs
                         Vector2 bottomleft = voxelData[x, y, z].uvCoordinate / atlasSize;
 
-                        uvs.AddRange(new List<Vector2>() { bottomleft + new Vector2(0, 1f) / atlasSize, bottomleft + new Vector2(1f, 1f) / atlasSize, bottomleft + new Vector2(1f, 0) / atlasSize, bottomleft });
+                        if (slab && facenum != 0 && facenum != 1)
+                        {
+                            uvs.AddRange(new List<Vector2>() { bottomleft + new Vector2(0, 0.5f) / atlasSize, bottomleft + new Vector2(1f, 0.5f) / atlasSize, bottomleft + new Vector2(1f, 0) / atlasSize, bottomleft });
+                        }                       
+                        else uvs.AddRange(new List<Vector2>() { bottomleft + new Vector2(0, 1f) / atlasSize, bottomleft + new Vector2(1f, 1f) / atlasSize, bottomleft + new Vector2(1f, 0) / atlasSize, bottomleft });
                     }
                 }
 
