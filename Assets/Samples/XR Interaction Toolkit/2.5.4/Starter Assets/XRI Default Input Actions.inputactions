@@ -961,7 +961,7 @@
                 {
                     "name": "",
                     "id": "e3da7d3f-3e3d-4ab5-bc5e-911e484342de",
-                    "path": "<XRController>/{PrimaryButton}",
+                    "path": "<XRController>{LeftHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -1788,7 +1788,7 @@
                 {
                     "name": "",
                     "id": "7a879021-e411-4de9-a929-6d00c6f2c40a",
-                    "path": "<XRController>/{PrimaryButton}",
+                    "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",

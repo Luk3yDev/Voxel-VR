@@ -32,7 +32,11 @@ public class ManipulateTerrain : MonoBehaviour
 
     private void Awake()
     {
-        netWorld = world.GetComponent<NetworkWorld>();
+        netWorld = world.GetComponent<NetworkWorld>();       
+    }
+
+    private void Start()
+    {
         RegenerateHandVoxelMaterial(VoxelIndexer.IndexToVoxel(currentVoxel));
     }
 
