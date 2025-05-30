@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapBuilder : MonoBehaviour
 {
-    [SerializeField] int chunkSize;
+    public int chunkSize;
     public Vector3Int mapSize;
     [SerializeField] VoxelMeshBuilder chunkPrefab;
     [SerializeField] Voxel airVoxel;

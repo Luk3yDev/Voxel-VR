@@ -12,6 +12,7 @@ using UnityEngine.UI;
 public class NetworkConnect : MonoBehaviour
 {
     public Button hostButton;
+    public Button hostButton2;
     public Button joinButton;
 
     public TMP_InputField joinCodeInput;
@@ -47,6 +48,7 @@ public class NetworkConnect : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         hostButton.onClick.AddListener(CreateRelay);
+        hostButton2.onClick.AddListener(CreateRelay);
         joinButton.onClick.AddListener(() => JoinRelay(joinCodeInput.text));
     }
 
