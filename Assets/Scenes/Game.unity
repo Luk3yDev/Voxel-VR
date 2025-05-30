@@ -7160,6 +7160,7 @@ GameObject:
   - component: {fileID: 1377445687}
   - component: {fileID: 1377445686}
   - component: {fileID: 1377445690}
+  - component: {fileID: 1377445691}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7491,6 +7492,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1377445691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377445684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016b4036ca953014582c86cc0f49c107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 1377445690}
+  tracks:
+  - {fileID: 8300000, guid: 2049a5e6deb0b314b979552e38eabbe7, type: 3}
+  - {fileID: 8300000, guid: 883dd0c85a4e29d4f803ed7a5c56094a, type: 3}
+  - {fileID: 8300000, guid: e53f623105000374695d268b490f41ef, type: 3}
+  - {fileID: 8300000, guid: 26ac080a04fb1184ab03167d854698f6, type: 3}
 --- !u!1001 &1441549033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10826,6 +10845,7 @@ GameObject:
   - component: {fileID: 1907156672}
   - component: {fileID: 1907156668}
   - component: {fileID: 1907156673}
+  - component: {fileID: 1907156674}
   m_Layer: 8
   m_Name: World
   m_TagString: Untagged
@@ -10920,6 +10940,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc35b37143d11dd488659d46b58b4409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1907156674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907156667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3a404ab57923c41aab787919a11f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootVoxel: {fileID: 11400000, guid: 521185f2b7cfc9b458adc6b020519bae, type: 2}
+  mushRootVoxel: {fileID: 11400000, guid: 5b42b30514689af4782566dccfedbb2c, type: 2}
+  cactiRootVoxel: {fileID: 11400000, guid: faf406e994a006747996f8032e8c1959, type: 2}
+  pineRootVoxel: {fileID: 11400000, guid: 8cd92c6909a34b048be782fefcaad28d, type: 2}
+  woodVoxel: {fileID: 11400000, guid: ee7dce56b06cf3f4abafdbec4cb73627, type: 2}
+  woodVoxel2: {fileID: 11400000, guid: e05e94cb88b72df4d8318f0478848774, type: 2}
+  cactiVoxel: {fileID: 11400000, guid: 6d9c545bb889cf545b28ee7b2ae72643, type: 2}
+  leavesVoxel: {fileID: 11400000, guid: 13712fbbbd0e2834eada0d6df8a082c3, type: 2}
+  leavesVoxel2: {fileID: 11400000, guid: 04e395e035a6f23429196368cea17c39, type: 2}
+  mushroomStemVoxel: {fileID: 11400000, guid: be960f0214572cc4c974c8e8b66915e3, type: 2}
+  mushroomVoxel: {fileID: 11400000, guid: 312be722a5e40334c933cf9485a894bb, type: 2}
+  cactiFlowerVoxel: {fileID: 11400000, guid: 4bbe704dfaf49334da0db543b368ecda, type: 2}
 --- !u!1 &1910625528
 GameObject:
   m_ObjectHideFlags: 0
