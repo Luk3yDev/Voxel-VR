@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
+using System;
+using System.IO;
 
 public class InGameMenu : MonoBehaviour
 {
@@ -32,5 +34,14 @@ public class InGameMenu : MonoBehaviour
         selfieCamera.SetActive(!selfieCamera.activeSelf);
         if (selfieCamera.activeSelf) ui.color = Color.white;
         else ui.color = Color.black;
+    }
+
+    public void TakeScreenshot()
+    {
+        string picturesPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+        string fileName = "Voxel VR Screenshot_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".png";
+        string fullPath = Path.Combine(picturesPath, fileName);
+
+        ScreenCapture.CaptureScreenshot(fullPath);
     }
 }
