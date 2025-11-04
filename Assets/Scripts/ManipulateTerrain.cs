@@ -84,6 +84,21 @@ public class ManipulateTerrain : MonoBehaviour
             Vector3 targetPos = hitInfo.point - (hitInfo.normal * 0.5f);
             Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
 
+            /*
+            Debug.DrawLine(new Vector3(voxelPos.x - 0.5f, voxelPos.y - 0.5f,
+                                       voxelPos.z - 0.5f),
+                           new Vector3(voxelPos.x + 0.5f, voxelPos.y - 0.5f,
+                                       voxelPos.z - 0.5f), Color.red);
+            Debug.DrawLine(new Vector3(voxelPos.x - 0.5f, voxelPos.y - 0.5f,
+                                       voxelPos.z - 0.5f),
+                           new Vector3(voxelPos.x - 0.5f, voxelPos.y + 0.5f,
+                                       voxelPos.z - 0.5f), Color.yellow);
+            Debug.DrawLine(new Vector3(voxelPos.x - 0.5f, voxelPos.y - 0.5f,
+                                       voxelPos.z - 0.5f),
+                           new Vector3(voxelPos.x - 0.5f, voxelPos.y - 0.5f,
+                                       voxelPos.z + 0.5f), Color.blue);
+            */
+
             Vector3 exTargetPos = targetPos + (hitInfo.normal);
             if (world.voxelData[(int)exTargetPos.x, (int)exTargetPos.y, (int)exTargetPos.z].modelType == Voxel.ModelType.Cross)
             {
@@ -192,7 +207,23 @@ public class ManipulateTerrain : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, range, terrainLayer))
         {
             Vector3 targetPos = hitInfo.point + (hitInfo.normal * 0.5f);
+            Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
 
+            Collider[] cols = Physics.OverlapBox(voxelPos, new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, playerLayer);
+
+            if (cols.Length == 0)
+            {
+                if (VoxelIndexer.IndexToVoxel(currentVoxel).breakSound != null)
+                {
+                    GameObject soundObj = Instantiate(blockAudioObject, voxelPos, Quaternion.identity);
+                    soundObj.GetComponent<AudioSource>().clip = VoxelIndexer.IndexToVoxel(currentVoxel).breakSound;
+                }
+
+                world.SetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
+                netWorld.NetworkSetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
+            }
+
+            /*
             if (!Physics.CheckSphere(targetPos, 0.45f, playerLayer))
             {
                 Vector3Int voxelPos = new Vector3Int(Mathf.RoundToInt(targetPos.x), Mathf.RoundToInt(targetPos.y), Mathf.RoundToInt(targetPos.z));
@@ -205,6 +236,7 @@ public class ManipulateTerrain : MonoBehaviour
                 world.SetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
                 netWorld.NetworkSetVoxel(voxelPos, VoxelIndexer.IndexToVoxel(currentVoxel));
             }
+            */
         }
     }
 }

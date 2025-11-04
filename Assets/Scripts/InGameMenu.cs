@@ -22,22 +22,33 @@ public class InGameMenu : MonoBehaviour
         }
     }
 
-    public void ToggleTurning(Image image)
+    private float lastToggleTurnTime;
+    public float toggleTurnCooldown = 0.2f;
+    public void ToggleTurn(Image ui)
     {
+        if (Time.time - lastToggleTurnTime < toggleTurnCooldown) return;
+        lastToggleTurnTime = Time.time;
+
         SnapTurnProvider.enabled = !SnapTurnProvider.enabled;
-        if (SnapTurnProvider.enabled ) image.color = Color.white;
-        else image.color = Color.black;
+        ui.color = SnapTurnProvider.enabled ? Color.white : Color.black;
     }
 
+    private float lastToggleTime;
+    public float toggleCooldown = 0.2f;
     public void ToggleCamera(Image ui)
     {
+        if (Time.time - lastToggleTime < toggleCooldown) return;
+        lastToggleTime = Time.time;
+
         selfieCamera.SetActive(!selfieCamera.activeSelf);
-        if (selfieCamera.activeSelf) ui.color = Color.white;
-        else ui.color = Color.black;
+        ui.color = selfieCamera.activeSelf ? Color.white : Color.black;
     }
+
 
     public void TakeScreenshot()
     {
+        UI.SetActive(false);
+
         string picturesPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
         string fileName = "Voxel VR Screenshot_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".png";
         string fullPath = Path.Combine(picturesPath, fileName);

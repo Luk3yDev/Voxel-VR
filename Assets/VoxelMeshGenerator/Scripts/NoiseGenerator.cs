@@ -153,7 +153,7 @@ public class NoiseGenerator : MonoBehaviour
             return biome.surfaceVoxel;
         }
         // Generate plants if the biome requires them
-        if (height > pos.y - 1 && biome.generatePlants)
+        if (height > pos.y - 1 && biome.generatePlants && pos.y > 1)
         {
             if (UnityEngine.Random.Range(0, 150) == 0)
             {
